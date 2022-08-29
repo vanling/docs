@@ -19,6 +19,8 @@ We recommend you try the [Quickstart Guide](/getting-started/quickstart.md) to g
 
 :::tip Learn More
 
+<!--  -->
+
 To manage users, role and permissions programmatically via the API, please see our API guides on
 [users](/reference/system/users.md), [roles](/reference/system/roles.md), and
 [permissions](/reference/system/permissions.md).
@@ -55,9 +57,9 @@ you will want to keep data completely private, only accessible to logged-in, aut
 begin turned off. It is up to the administrators to re-configure this and define exactly what a random, unauthenticated user
 has access to within the database.
 
-In addition to these two extreme types of roles, Admins which has full permissions and public which defines minimum
-permissions, you may need to create more roles. The roles you decide to create and the permissions you assign to each
-role are completely open-ended and dependent on your project's needs.
+In addition to these two extreme types of roles, you may need to create more roles each with their own unique set of
+permissions. The roles you decide to create and the permissions you assign to each role are completely open-ended and
+dependent on your project's needs.
 
 Typically, users, roles and permissions are created using SQL. While you have full reign to configure these using SQL,
 the Directus Data Studio enables you to configure these in a GUI, without writing a single line of SQL.
@@ -75,7 +77,7 @@ unauthenticated request to app data including unauthenticated users, visitors to
 to your Directus Project's API.
 
 Administrators can create roles, configure permissions, and assign roles to users as desired. It is a fairly simple
-three step process.
+process.
 
 1. [Create a Role](#create-a-role)
 2. [Configure Role Permissions](#configure-role-permissions)
@@ -117,8 +119,8 @@ To create a role, follow these steps.
 
 :::tip
 
-Next, you will likely need to [configure the role's details](#configure-role-details) and
-[configure the role's permissions](#configure-role-permissions).
+Next, you will likely need to [configure the role's permissions](#configure-role-permissions) and
+[configure the role's details](#configure-role-details).
 
 :::
 
@@ -146,12 +148,11 @@ disabled as the role has complete access to the platform.
 
 :::
 
-1. Navigate to **Settings <span mi icon dark>chevron_right</span> Roles & Permissions
-   <span mi icon dark>chevron_right</span> [Role Name]**
-2. Scroll to the **Permissions** section
-3. **Click the icon** for the collection (row) and action (column) you want to set
+1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
+2. Scroll to the **Permissions** section.
+3. **Click the icon** for the collection (row) and action (column) you want to set.
 4. Choose the desired permission level: <span mi icon>check</span> **All Access**, <span mi icon>block</span> **No
-   Access**, or <span mi icon>rule</span> **Use Custom**
+   Access**, or <span mi icon>rule</span> **Use Custom**.
 
 If you selected **"<span mi icon>check</span> All Access"** or **"<span mi icon>block</span> No Access"** then setup is
 complete. If you chose to customize permissions then continue with the appropriate guide below based on the relevant
@@ -195,6 +196,16 @@ App's soft-delete and manual sorting features.
 
 ---
 
+### Toggle all of a Collection's Permissions
+
+You have the option to toggle permissions to All/None for a specific collection, revert to app access minimum, revert
+recommended defaults.
+
+1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
+2. Mouse over the desired collection and click:
+   - **All** to enable all CRUDS permissions for a collection.
+   - **None** to restrict all CRUDS permissions for a collection.
+
 ### Configure System Permissions
 
 In addition to permissions for _your_ custom collections, you can also customize the permissions for _system_
@@ -220,18 +231,16 @@ collections for that Role.
 
 :::
 
-## Reset Permissions
+### Reset System Permissions
 
-<video title="Reset Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
+This is only available when **App Access** is enabled under [role details](#configure-role-details).
 
-Sometimes, you may need to reset a role's permissions on or off. There are several ways to do this. First, you could
-manually reconfigure each CRUDS permission, as shown in the [configure role permissions](#configure-role-permissions)
-section. Additionally, you have the option to
-
-- Toggle All/None for a specific row.
-- Revert to **App Access Minimum** OR **Recommended Defaults**
+1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
+2. At the bottom of **Permissions**, click **System Collections** to expand the menu and show System Collections.
+3. Scroll to the bottom. Under **Reset System Permissions to:** choose the following:
+   - **App Access Minimum** — Reconfigures permissions on system collections to the bare minimum required to log in to
+     the app.
+   - **Recommended Defaults** — Reconfigures permissions on system collections to the recommended defaults.
 
 ## Configure Role Details
 
@@ -253,8 +262,7 @@ section. Additionally, you have the option to
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-You can invite and create users, as well as manage their role from the [User Directory](/app/user-directory.md). To
-assign a role to a user from within **Settings > Roles & Permissions > [Role]**, follow these steps.
+To assign a role to a user from **Settings > Roles & Permissions > [Role]**, follow these steps.
 
 ### Invite a User
 
@@ -282,7 +290,14 @@ assign a role to a user from within **Settings > Roles & Permissions > [Role]**,
 1. Under the **Users in Role** section, click <span mi icon dngr>close</span> and the user will be removed from the
    role.
 
-Until assigned a new role, the user(s) will be given a `NULL` role, which limits them to Public permissions.
+Once removed from a role, the user(s) will be given a `NULL` role until assigned a new role, limiting them to Public
+permissions.
+
+:::tip
+
+You can also invite and create users, as well as manage their role from the [User Directory](/app/user-directory.md).
+
+:::
 
 ## Configure Workflows
 
