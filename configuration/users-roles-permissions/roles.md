@@ -27,12 +27,12 @@ Filler
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-To create a role, follow these steps.
+To view an existing role, follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions**.
 2. Click the desired role and a new page will open.
 
-Now you can see the role's configured permissions and other details.
+Now you can see the role's permissions and other details.
 
 ## Create a Role
 
@@ -50,10 +50,6 @@ To create a role, follow these steps.
    - **Admin Access** — Configures full access permissions to all project data and settings.
 5. Click on **Save** to confirm.
 
-Roles with _App Access_ enabled are created with some limited Permissions configured by default, so they can access the
-app and their own profile information. Roles that have neither _Admin_ nor _App Access_ enabled (such as the built-in
-_Public_ Role) are created with Public access permissions.
-
 :::tip
 
 Next, you will likely need to [configure the role's details](#configure-role-details) and
@@ -67,22 +63,30 @@ Next, you will likely need to [configure the role's details](#configure-role-det
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
+In addition to defining permissions, roles come with a number of other configuration options. To configure a role's
+details, follow these steps.
+
 1. Navigate to **Settings > Roles & Permissions**.
 2. Click the desired role and a new page will open.
+3. Configure the following options as desired.
+   - **Permissions** — Configures [access permissions](#configure-permissions) for the role.
+   - **Role Name** — Sets the name of the role.
+   - **Role Icon** — Sets icon used throughout the App when referencing this role.
+   - **Description** — Adds a note to help explain the role's purpose.
+   - **App Access** — Auto-configures minimum permissions required to log in to the App.
+   - **Admin Access** — Auto-configures full permissions to project data and Settings. Must be toggled off to restore
+     ability to restrict permissions.
+   - **IP Access** — Adds IP addresses to whitelist. Type in and hit `Enter` (PC) or `Return` (Mac) to confirm. Leave
+     empty to allow all IP addresses.
+   - **Require MFA** — Forces all users within this role to use multi-factor authentication.
+   - **Users in Role** — Lists all users within this role.
+4. Click <span mi btn>check</span> in the page header to confirm.
 
-- **Permissions** — Configure [access permissions](#configure-permissions) for the role.
-- **Role Name** — Sets the name of the role.
-- **Role Icon** — Sets icon used throughout the App when referencing this role.
-- **Description** — Adds a note to help explain the role's purpose.
-- **App Access** — Auto-configures minimum permissions required to log in to the App.
-- **Admin Access** — Auto-configures full permissions to project data and Settings.
-- **IP Access** — Sets an IP address whitelist. Leave empty to allow all IP addresses.
-- **Require MFA** — Forces all users within this role to use two-factor authentication.
-- **Users in Role** — Lists all users within this role.
+:::tip App Access vs Admin Access
 
-:::tip
-
-Sinc the Public role, it has no details available for configuration, except permissions.
+Roles with _App Access_ enabled are created with the minimum permissions required to login to the app and access their
+own profile information. Roles that have neither _Admin_ nor _App Access_ enabled are created with Public access
+permissions. You can always reconfigure these permissions later.
 
 :::
 
@@ -92,27 +96,23 @@ Sinc the Public role, it has no details available for configuration, except perm
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
+To delete a role, follow these steps.
+
 1. Navigate to **Settings > Roles & Permissions <span mi icon dark>chevron_right</span> [Role Name]**.
 2. Click <span mi btn dngr>delete</span> in the page header and a popup will appear.
 3. Click **Delete** to confirm.
 
 ::: warning Users in a Deleted Role
 
-If you delete a role that still has users in it, those users will be given a `NULL` role, limits them to Public
-permissions. From here, you can [assign them to a new role](#add-an-existing-user).
+If you delete a role that still has users in it, those users will be given a `NULL` role, which limits them to public
+permissions. However, you can always
+[assign them a new role](/configuration/users-roles-permissions/users.md#assign-role-to-existing-user).
 
 :::
 
-::: warning Last Admin
+:::tip Built-in Roles
 
-You must maintain at least one user in an administrator role in order to manage the project.
-
-:::
-
-::: warning Public Role
-
-The core platform does not allow you to delete the Public role. This is because there must to be a defined behavior for
-when an unauthenticated user tries to access the platform. If you'd like to disable public access, simply turn off all
-permissions.
+The core platform does not allow you to delete the public role or administrator role. To learn more, please see the
+section on [Directus Roles](/configuration/users-roles-permissions.html#directus-roles)
 
 :::

@@ -21,56 +21,54 @@ Filler
 :::
 -->
 
+## Configure Permissions
+
 <video title="Configure Role Permissions" autoplay playsinline muted loop controls>
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-<!-- MOVE THIS TO MAIN PAGE -->
+1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
+2. Scroll to the **Permissions** section. Notice the each collection is in a row and its CRUDS permissions are in
+   columns.
+3. Click the icon for the collection and permission type that you want to set. If you'd like to adjust permissions for
+   Directus system collections, then click **System Collections** to expand the menu and access these collections.
+4. Click the icon in the relevant collection row and CRUDS permission column and popup menu will appear with the
+   following permission levels:
+   - <span mi icon muted>check</span> **All Access** — Grants the role permission to all the collection's items.
+   - <span mi icon muted>block</span> **No Access** — Denies the role permission to all the collection's items.
+   - <span mi icon muted>rule</span> **Use Custom** — Grants the role permissions to some items and fields of items.
+5. Click to reconfigure the permissions level as desired.
 
-Directus possesses an extremely granular, yet easy to configure permissions system. When you
-[create a role](#create-a-role), all permissions are turned off by default. This allows you to give explicit access to
-only what is required. Individual permissions are applied to the role, and each is scoped to a specific collection and
-CRUDS action (create, read, update, delete, share).
+Every reconfiguration is saved automatically and instantly. If you selected <span mi muted>check</span> **All Access**
+or <span mi muted>block</span> **No Access** then setup is complete. If you chose <span mi icon muted>rule</span> **Use
+Custom**, a drawer will open.
 
-<!--   -->
-
-:::tip Saves Automatically
-
-Every reconfiguration made to permissions is saved automatically and instantly.
-
-:::
+5. Configure custom access permission validations as desired. To learn more, please read the relevant section below.
+6. Click <span mi btn>check</span> in the side drawer header to confirm and save custom access permissions.
 
 ::: warning Admin Roles
 
-If you [configure the role's details](#configure-role-details) to have **Admin Access**, Permission configuration is
-disabled as the role has complete access to the platform.
+If you [configured the role's details](/configuration/users-roles-permissions/roles.md#configure-role-details) to have
+**Admin Access**, permission configuration is disabled.
 
 :::
 
-1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
-2. Scroll to the **Permissions** section.
-3. **Click the icon** for the collection (row) and action (column) you want to set.
-4. Choose the desired permission level: <span mi icon>check</span> **All Access**, <span mi icon>block</span> **No
-   Access**, or <span mi icon>rule</span> **Use Custom**.
+## Custom Create Permissions
 
-If you selected **"<span mi icon>check</span> All Access"** or **"<span mi icon>block</span> No Access"** then setup is
-complete. If you chose to customize permissions then continue with the appropriate guide below based on the relevant
-_action_.
+<video title="Configure Role Permissions" autoplay playsinline muted loop controls>
+	<source src="https://cdn.directus.io/" type="video/mp4" />
+</video>
 
-<!-- CRUDS + Permission Inheritance -->
-<!-- Shares, Flows, ??? use Permission Inheritance (perhaps this should go in glossary) -->
+Custom create permissions is broken into the following three sub-menus, shown in the drawer's nav bar on the left:
 
-### Create (Custom Access)
+- **Field Permissions** — Toggle a field to grant or prevent access when creating an item.
+- **Field Validation** — Set [filters](/app/filters.md) to define valid field values when creating an item.
+- **Field Presets** — Set default field values to be applied when creating an item.
 
-5. **Field Permissions** control which fields accept a value on create. Fields are individually toggled.
-6. **Field Validation** define the rules for field values on create
-7. **Field Presets** control the field defaults when creating an item
+## Custom Read Permissions
 
-### Read (Custom Access)
-
-5. **Item Permissions** control which items can be read, as defined by the [Filter Rules](/reference/filter-rules)
-   entered.
-6. **Field Permissions** control which fields can be read. Fields are individually toggled.
+- **Item Permissions** — Set [filters](/app/filters.md) to define which items can be read.
+- **Field Permissions** control which fields can be read. Fields are individually toggled.
 
 ::: warning Read Field Permissions
 
@@ -80,7 +78,7 @@ App's soft-delete and manual sorting features.
 
 :::
 
-### Update (Custom Access)
+## Custom Update Permissions
 
 5. **Item Permissions** control which items can be updated, as defined by [Filter Rules](/reference/filter-rules).
 6. **Field Permissions** control which fields can be updated. Fields are individually toggled.
@@ -88,12 +86,19 @@ App's soft-delete and manual sorting features.
    [Filter Rules](/reference/filter-rules).
 8. **Field Presets** control the field defaults when updating an item
 
-### Delete (Custom Access)
+## Custom Delete Permissions
 
 5. **Item Permissions** control which items can be deleted, as defined by the [Filter Rules](/reference/filter-rules)
    entered.
 
-## Toggle all of a Collection's Permissions
+## Custom Share Permissions
+
+Remember, [shares](/app/content/shares.md) let you grant access to an item in a collection to people that would
+otherwise not have access permissions.
+
+**Item Permissions**
+
+## Toggle All Collection Permissions
 
 You have the option to toggle permissions to All/None for a specific collection, revert to app access minimum, revert
 recommended defaults.

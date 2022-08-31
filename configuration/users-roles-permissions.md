@@ -124,8 +124,9 @@ granular permissions, and assign roles to users as desired. To create a new role
 Directus comes with a pre-configured user collection. You cannot change the existing fields and you cannot delete this
 collection. However, you can add additional fields as desired, or even create your own custom `users` collection
 entirely. Directus users are managed within the User Directory. However, there are some controls available to assign
-users to roles within **Settings > Roles and Permissions**. To learn more, please see our guide on
-[users](/configuration/users-roles-permissions/users.md).
+users to roles within **Settings > Roles and Permissions**.
+
+To learn more, please see our guide on [users](/configuration/users-roles-permissions/users.md).
 
 ## Directus Roles
 
@@ -134,14 +135,17 @@ users to roles within **Settings > Roles and Permissions**. To learn more, pleas
 </video>
 
 Directus roles are composed of pre-configured permissions for each collection, as well as a number of other role
-details. You can create as many roles as you need for your project.
+details. You can create as many roles as you need for your project. Directus also comes with built-in administrator and
+public roles, which cannot be deleted.
 
-The platform comes with built-in administrator and public roles, which cannot be deleted. The Admin role provides full
-permissions for all data in the app, and this cannot be limited. The public role comes with all access permissions
-turned off by default, however these can be fully reconfigured as needed. This public role determines the access
-permissions given for any unauthenticated request to app data including unauthenticated users, visitors to your website
-or any other web request to your Directus Project's API. To learn more, see our guide on
-[roles](/configuration/users-roles-permissions/roles.md).
+The administrator role provides full permissions for all data in the app, and this cannot be limited, as by definition
+it would no longer be an admin role. You must always have at least one user with an administrator role.
+
+The public role comes with all access permissions turned off by default, but this can be reconfigured as desired.
+Remember, access permissions granted to this role apply to everyone, including unauthenticated web traffic _and all
+existing users_. If you wish to keep the project private, simply keep all permissions turned off.
+
+To learn more, see our guide on [roles](/configuration/users-roles-permissions/roles.md).
 
 ## Directus Permissions
 
@@ -149,11 +153,18 @@ or any other web request to your Directus Project's API. To learn more, see our 
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-Directus offers a granular permissions system. However, in Directus, there are two differences compared to working with
-a typical SQL database permissions system. First, we replaced term _business rules_ with **custom access permissions**,
-however this functionality is the same. Second, instead of the standard CRUD permissions, Directus has CRUDS
-permissions: _create, read, update, delete, shares_. This _fifth_ type of permission defines whether a user has
-permissions to perform [data sharing](/app/content/shares.md) on items in a collection.
+Directus offers an extremely granular, yet easy to configure permissions system.
+
+When you [create a role](#create-a-role), all permissions are turned off by default. This allows you to give explicit
+access to only what is required.
+
+In addition, Directus has two differences compared to working with a typical SQL database permissions system. First, we
+replaced term _business rules_ with **custom access permissions**, however the functionality is the same. Second,
+instead of the standard CRUD permissions, Directus provides CRUDS permissions: _create, read, update, delete, and
+share_. This _fifth_ type of permission, share, defines whether a user has permissions to perform
+[data sharing](/app/content/shares.md) on items in a collection.
+
+To learn more, see our guide on [permissions](/configuration/users-roles-permissions/permissions.md)
 
 ## Workflows
 
@@ -163,5 +174,6 @@ permissions to perform [data sharing](/app/content/shares.md) on items in a coll
 
 Workflows are a way to setup structured stages to content authoring and data management. They are created primarily with
 custom access permissions, but can be enhanced with email notifications, custom interfaces, and
-[flows](/configuration/flows.md). Directus supports endlessly configurable workflows. To learn more, see our
-documentation on [Workflows](/configuration/users-roles-permissions/workflows.md).
+[flows](/configuration/flows.md). Directus supports endlessly configurable workflows.
+
+To learn more, see our guide on [Workflows](/configuration/users-roles-permissions/workflows.md).
