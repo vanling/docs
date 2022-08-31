@@ -25,10 +25,14 @@ Filler
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
+<!-- MOVE THIS TO MAIN PAGE -->
+
 Directus possesses an extremely granular, yet easy to configure permissions system. When you
 [create a role](#create-a-role), all permissions are turned off by default. This allows you to give explicit access to
 only what is required. Individual permissions are applied to the role, and each is scoped to a specific collection and
 CRUDS action (create, read, update, delete, share).
+
+<!--   -->
 
 :::tip Saves Automatically
 
