@@ -1,3 +1,9 @@
+# Workflows
+
+- workflows
+- notifications
+- data flows + github/netlify?
+
 ## Configure Workflows
 
 <video title="Configure Workflows" autoplay playsinline muted loop controls>

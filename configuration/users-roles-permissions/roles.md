@@ -1,22 +1,38 @@
+---
+description:
+readTime:
+---
+
 # Roles
 
+> Intro
+
 <!--
+:::tip Before you Begin
 
-Roles with _App Access_ enabled are created with some limited Permissions configured by default, so they can access the app and their own profile information.
-Roles that have neither _Admin_ nor _App Access_ enabled (such as the built-in _Public_ Role) are created with Public access permissions.
-### Configure Public Permissions
-
-The Public permissions control what project data is accessible without authentication. This is managed via the Public
-"role", which is included in the system by default and can not be deleted.
-
-::: warning Private by Default
-
-All of the data within the platform is private by default. Permissions for the public role can be granted on a
-case-by-case basis by administrators.
+Filler
 
 :::
 
+:::tip Learn More
+
+Filler
+
+:::
 -->
+
+## View a Role
+
+<video title="Create a Role" autoplay playsinline muted loop controls>
+	<source src="https://cdn.directus.io/" type="video/mp4" />
+</video>
+
+To create a role, follow these steps.
+
+1. Navigate to **Settings > Roles & Permissions**.
+2. Click the desired role and a new page will open.
+
+Now you can see the role's configured permissions and other details.
 
 ## Create a Role
 
@@ -34,16 +50,25 @@ To create a role, follow these steps.
    - **Admin Access** — Configures full access permissions to all project data and settings.
 5. Click on **Save** to confirm.
 
+Roles with _App Access_ enabled are created with some limited Permissions configured by default, so they can access the
+app and their own profile information. Roles that have neither _Admin_ nor _App Access_ enabled (such as the built-in
+_Public_ Role) are created with Public access permissions.
+
 :::tip
 
-Next, you will likely need to [configure the role's permissions](#configure-role-permissions) and
-[configure the role's details](#configure-role-details).
+Next, you will likely need to [configure the role's details](#configure-role-details) and
+[configure the role's permissions](#configure-role-permissions).
 
 :::
 
 ## Configure Role Details
 
-![Configure Role Details](image.webp)
+<video title="Configure Role Details" autoplay playsinline muted loop controls>
+	<source src="https://cdn.directus.io/" type="video/mp4" />
+</video>
+
+1. Navigate to **Settings > Roles & Permissions**.
+2. Click the desired role and a new page will open.
 
 - **Permissions** — Configure [access permissions](#configure-permissions) for the role.
 - **Role Name** — Sets the name of the role.
@@ -55,14 +80,19 @@ Next, you will likely need to [configure the role's permissions](#configure-role
 - **Require MFA** — Forces all users within this role to use two-factor authentication.
 - **Users in Role** — Lists all users within this role.
 
+:::tip
+
+Sinc the Public role, it has no details available for configuration, except permissions.
+
+:::
+
 ## Delete a Role
 
 <video title="Create a Role" autoplay playsinline muted loop controls>
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-1. Navigate to **Settings <span mi icon dark>chevron_right</span> Roles & Permissions
-   <span mi icon dark>chevron_right</span> [Role Name]**.
+1. Navigate to **Settings > Roles & Permissions <span mi icon dark>chevron_right</span> [Role Name]**.
 2. Click <span mi btn dngr>delete</span> in the page header and a popup will appear.
 3. Click **Delete** to confirm.
 
