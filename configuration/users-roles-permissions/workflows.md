@@ -1,12 +1,15 @@
 # Workflows
 
-- workflows
-- notifications
-- data flows + github/netlify?
+Workflows are a way to add structured stages to the flow of content authoring. To do this, a workflow uses custom access
+permissions to grant/deny user(s) access to item(s), conditionally. From there, workflows can be further enhanced via
+[custom interfaces](/extensions/interfaces.md) and [flows](/configuration/flows.md).
 
-Workflows are a way to add structured stages to the flow of content authoring. They are primarily defined through the
-permissions for a Collection, but can be further enhanced via email notifications, custom interfaces, and
-[flows](/configuration/flows.md).
+<!--
+3 Workflows
+- Content Status - outline, draft, editing, review, published
+- Project Mgmt - add a notification and update to Insights
+- Validation - save as done, triggers a flow to check work, returns grades
+-->
 
 <video title="Configure Workflows" autoplay playsinline muted loop controls>
 	<source src="https://cdn.directus.io/" type="video/mp4" />
