@@ -47,7 +47,7 @@ To create a role, follow these steps.
 3. Enter a unique **Role Name**.
 4. Toggle **App Access** and **Admin Access** as desired:
    - **App Access** — Configures minimum access permissions required to log in to the App.
-   - **Admin Access** — Configures full access permissions to all project data and settings.
+   - **Admin Access** — Configures Admin Access permissions to all project data and settings.
 5. Click on **Save** to confirm.
 
 :::tip
@@ -76,7 +76,7 @@ details, follow these steps.
    - **App Access** — Auto-configures minimum permissions required to log in to the App.
    - **Admin Access** — Auto-configures full permissions to project data and Settings. Must be toggled off to restore
      ability to restrict permissions.
-   - **IP Access** — Adds IP addresses to whitelist. Type in and hit `Enter` (PC) or `Return` (Mac) to confirm. Leave
+   - **IP Access** — Adds IP addresses to whitelist. Type in and hit `Enter` (PC) or `return` (Mac) to confirm. Leave
      empty to allow all IP addresses.
    - **Require MFA** — Forces all users within this role to use multi-factor authentication.
    - **Users in Role** — Lists all users within this role.
@@ -85,8 +85,8 @@ details, follow these steps.
 :::tip App Access vs Admin Access
 
 Roles with _App Access_ enabled are created with the minimum permissions required to login to the app and access their
-own profile information. Roles that have neither _Admin_ nor _App Access_ enabled are created with Public access
-permissions. You can always reconfigure these permissions later.
+own profile information. Roles that have neither _Admin_ nor _App Access_ enabled are created with public permissions.
+You can always reconfigure these permissions later.
 
 :::
 
@@ -112,7 +112,7 @@ permissions. However, you can always
 
 :::tip Built-in Roles
 
-The core platform does not allow you to delete the public role or administrator role. To learn more, please see the
-section on [Directus Roles](/configuration/users-roles-permissions.html#directus-roles)
+Directus does not allow you to delete the built-in public role or administrator role. To learn more, please see the
+introductory section on [Directus Roles](/configuration/users-roles-permissions.html#directus-roles)
 
 :::

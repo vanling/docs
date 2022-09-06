@@ -5,12 +5,12 @@ readTime:
 
 # Users
 
->
+> Intro
 
 <!--
 :::tip Before you Begin
 
-Filler
+
 
 :::
 
@@ -22,7 +22,8 @@ Filler
 -->
 
 Within the Data Studio, the [User Directory](/app/user-directory.md) is the primary place to manage users. However,
-**Settings > Roles & Permissions > [Role]** includes controls to manage a user's role as well.
+certain controls are included in **Settings > Roles & Permissions > [Role]** as well, which is what following sections
+will focus on.
 
 ## Invite a User
 
@@ -30,9 +31,7 @@ Within the Data Studio, the [User Directory](/app/user-directory.md) is the prim
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-Directus lets you invite users to your Directus project via email. When you do this within **Settings > Roles &
-Permissions > [Role]**, the role will be assigned to the user when they accept invitation and register. To invite a
-user, follow these steps.
+To invite people to become users via email, automatically assigning them a role in the process, follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role]**.
 2. Click <span mi btn muted>person_add</span> in the page header.
@@ -51,13 +50,13 @@ Instead of comma-separated emails, you can also add emails on a new line.
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-To add an existing user to the role list, follow these steps.
+To assign a role to an existing user, follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role]**.
 2. Under the **Users in Role** section, click <span mi btn muted>playlist_add</span> and a drawer will open.
 3. Select users as desired.
-4. Click <span mi btn>check</span> to confirm and the drawer will close.\
-   The added user(s) will now be visible under **Users in Role**.
+4. Click <span mi btn>check</span> to confirm and the drawer will close. The added user(s) will now be visible under
+   **Users in Role**.
 5. Click <span mi btn>check</span> in the page header to confirm.
 
 ## Create a User
@@ -66,13 +65,12 @@ To add an existing user to the role list, follow these steps.
 	<source src="https://cdn.directus.io/" type="video/mp4" />
 </video>
 
-To create a user and assign their role, follow these steps.
+To create a user and assign their role _(and other details)_ follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role]**.
 2. Under the **Users in Role** section, click <span mi btn>add</span> and a drawer will open.
-3. Fill in the user's details as desired.\
-   The newly created user will now be visible under **Users in Role**.
-4. Click <span mi btn>check</span> to confirm and the drawer will close.
+3. Fill in the user's details as desired. The newly created user will now be visible under **Users in Role**.
+4. Click <span mi btn>check</span> in the page header to confirm and the drawer will close.
 
 ## Remove User's Role
 
@@ -84,8 +82,9 @@ To remove a user from a role, follow these steps.
 
 1. Under the **Users in Role** section, click <span mi icon dngr>close</span> and the user will be removed from the
    role.
+2. Click <span mi btn>check</span> in the page header to confirm and the drawer will close.
 
-Once removed from a role, the user(s) will be given a `NULL` role until assigned a new role, limiting them to Public
+Once removed from a role, the user(s) will be given a `NULL` role until assigned a new role, limiting them to public
 permissions.
 
 :::tip
