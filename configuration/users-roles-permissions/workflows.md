@@ -5,22 +5,30 @@
 
 A workflow is defined with custom access permissions. Basically, you configure each role's custom access permissions on
 some collection(s), defining what they can and can't have access to, so that the each role's CRUDS permissions change at
-each stage in the workflow.
+each stage in the workflow. There are an infinite number of possible workflows you could configure. However, to give an
+example, we will configure a simple workflow where writers and editor will work together to publish articles.
 
-<!-- <video title="Configure Workflows" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video> -->
+<!--
+Four key parts:
+- roles
+- custom access permissions
+- collection
+- field value
+ -->
 
-There are an infinite number of possible workflows you could configure. However, to give an example, we will configure a
-simple workflow for an `articles` collection. In our workflow, the workflow logic will be managed via the `status`
-field. Someone from the `author` role will create an article, then pass it to an `editor` role who will co-edit the
-article. Once finished, the `editor` will publish the document and handle future updates.
+![A Workflow](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/workflows-20220909/workflows-20220909B.webp)
 
-![A Workflow](/configuration/users-roles-permissions/work-flows.jpg)
+Our workflow will have three stages, `draft`, `under review`, and `published`. The stage will be defined in a `status`
+field.
 
-| Draft                                                                     | Under Review                                                                         | Published                                                                                 |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Author creates article as `draft`. Then changes status to `under review`. | Author and editor co-edit the article, then change status to `published` when ready. | Editor is now responsible for all future updates to article. Author has no update access. |
+| `Draft`                                                                   | `Under Review`                                                                       | `Published`                                                                                         |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| Author creates article as `draft`. Then changes status to `under review`. | Author and editor co-edit the article, then change status to `published` when ready. | Editor is now responsible for all future updates to article. Author no longer has no update access. |
+
+The whole workflow is managed with custom access permissions. The `author` and `editor` access permissions to the
+`articles` collection change conditionally, based on the value of `status`.
+
+![A Workflow](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/workflows-20220909/workflows-20220909A.webp)
 
 To create a structured workflow for `articles`, follow these steps.
 

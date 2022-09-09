@@ -5,26 +5,18 @@ readTime:
 
 # Roles
 
-> Intro
-
-<!--
-:::tip Before you Begin
-
-Filler
-
-:::
+> Roles are essentially a bundle of pre-configured access permissions which you can (re)assigned to any number of users.
 
 :::tip Learn More
 
-Filler
+To configure roles programmatically, see our API documentation on [roles](/reference/system/roles.md).
 
 :::
--->
 
 ## View a Role
 
 <video title="Create a Role" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
+	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/roles-20220909/view-a-role-20220908A.mp4" type="video/mp4" />
 </video>
 
 To view an existing role, follow these steps.
@@ -37,7 +29,7 @@ Now you can see the role's permissions and other details.
 ## Create a Role
 
 <video title="Create a Role" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
+	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/roles-20220909/create-a-role-20220908A.mp4" type="video/mp4" />
 </video>
 
 To create a role, follow these steps.
@@ -60,7 +52,7 @@ Next, you will likely need to [configure the role's details](#configure-role-det
 ## Configure Role Details
 
 <video title="Configure Role Details" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
+	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/roles-20220909/configure-role-details-20220907A.mp4" type="video/mp4" />
 </video>
 
 In addition to defining permissions, roles come with a number of other configuration options. To configure a role's
@@ -93,7 +85,7 @@ You can always reconfigure these permissions later.
 ## Delete a Role
 
 <video title="Create a Role" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
+	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/roles-20220909/delete-a-role-20220907A.mp4" type="video/mp4" />
 </video>
 
 To delete a role, follow these steps.

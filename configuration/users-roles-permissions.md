@@ -12,7 +12,7 @@ readTime: 7 min read
 > user is assigned a [role](/getting-started/glossary#roles) which defines its access
 > [access permissions](/getting-started/glossary#permissions).
 
-![Users, Roles and Permissions]()
+![Users, Roles and Permissions](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/users-roles-permissions-20220907A.webp)
 
 In order to understand how users, roles, and permissions work in Directus, you'll need a conceptual understanding of
 _how they work in general_. The following few paragraphs will introduce you to the concepts of users, roles, and
@@ -122,7 +122,7 @@ and permissions without writing a single line of SQL.
 ## How it Works in Directus
 
 <video title="How Users, Roles, & Permissions Work" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
+	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/how-users-roles-and-permissions-work-20220909A.mp4" type="video/mp4" />
 </video>
 
 Directus enables you to create as many roles as needed, configure granular permissions, and assign roles to users as
@@ -141,7 +141,7 @@ optional. You may configure your own system as desired.
 
 ## Directus Users
 
-![Users in the Directus Data Studio](image.webp)
+![Users in the Directus Data Studio](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/users-20220807A.webp)
 
 Within the Data Studio, users are managed within the [User Directory](/app/user-directory.md). However, there are some
 controls available to assign users to roles in **Settings > Roles and Permissions**.
@@ -150,7 +150,7 @@ To learn more, please see our guide on [users](/configuration/users-roles-permis
 
 ## Directus Roles
 
-![Roles in the Directus Data Studio](image.wepb)
+![Roles in the Directus Data Studio](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/roles-20220907A.webp)
 
 Within the Data Studio, roles are configured in **Settings > Roles and Permissions**. You can create as many roles as
 you need for your project. Directus also comes with built-in administrator and public roles, which cannot be deleted.
@@ -166,7 +166,7 @@ To learn more, see our guide on [roles](/configuration/users-roles-permissions/r
 
 ## Directus Permissions
 
-![Roles in the Directus Data Studio](image.webp)
+![Roles in the Directus Data Studio](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/permissions-20220907A.webp)
 
 Within the Data Studio, permissions are configured in **Settings > Roles and Permissions**. Directus offers an extremely
 granular, yet easy to configure permissions system. When you [create a role](#create-a-role), all permissions are turned
@@ -183,7 +183,7 @@ To learn more, see our guide on [permissions](/configuration/users-roles-permiss
 
 ## Workflows
 
-![Workflows in the Directus](image.webp)
+![Workflows in the Directus](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/workflows-20220909/workflows-20220909B.webp)
 
 Workflows are a way to setup structured stages to content authoring and data management. They are created primarily with
 custom access permissions, but can be enhanced with email notifications, custom interfaces, and
