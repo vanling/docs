@@ -12,9 +12,7 @@ readTime: 7 min read
 > user is assigned a [role](/getting-started/glossary#roles) which defines its access
 > [access permissions](/getting-started/glossary#permissions).
 
-<!-- @TODO: REPLACE IMAGE -->
-
-![](https://i.imgur.com/EoBvye7.png)
+![Users, Roles and Permissions]()
 
 In order to understand how users, roles, and permissions work in Directus, you'll need a conceptual understanding of
 _how they work in general_. The following few paragraphs will introduce you to the concepts of users, roles, and
@@ -143,9 +141,7 @@ optional. You may configure your own system as desired.
 
 ## Directus Users
 
-<video title="Directus Users" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
+![Users in the Directus Data Studio](image.webp)
 
 Within the Data Studio, users are managed within the [User Directory](/app/user-directory.md). However, there are some
 controls available to assign users to roles in **Settings > Roles and Permissions**.
@@ -154,9 +150,7 @@ To learn more, please see our guide on [users](/configuration/users-roles-permis
 
 ## Directus Roles
 
-<video title="Directus Roles" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
+![Roles in the Directus Data Studio](image.wepb)
 
 Within the Data Studio, roles are configured in **Settings > Roles and Permissions**. You can create as many roles as
 you need for your project. Directus also comes with built-in administrator and public roles, which cannot be deleted.
@@ -172,9 +166,7 @@ To learn more, see our guide on [roles](/configuration/users-roles-permissions/r
 
 ## Directus Permissions
 
-<video title="Directus Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
+![Roles in the Directus Data Studio](image.webp)
 
 Within the Data Studio, permissions are configured in **Settings > Roles and Permissions**. Directus offers an extremely
 granular, yet easy to configure permissions system. When you [create a role](#create-a-role), all permissions are turned
@@ -191,9 +183,7 @@ To learn more, see our guide on [permissions](/configuration/users-roles-permiss
 
 ## Workflows
 
-<video title="Configure Workflows" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
+![Workflows in the Directus](image.webp)
 
 Workflows are a way to setup structured stages to content authoring and data management. They are created primarily with
 custom access permissions, but can be enhanced with email notifications, custom interfaces, and

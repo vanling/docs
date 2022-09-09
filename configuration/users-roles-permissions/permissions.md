@@ -5,21 +5,14 @@ readTime:
 
 # Permissions
 
-> Intro
-
-<!--
-:::tip Before you Begin
-
-Filler
-
-:::
+> Directus offers an extremely granular, yet easy to configure permissions system. When you create a role, all
+> permissions are turned off by default, allowing you to explicitly grant permissions as desired.
 
 :::tip Learn More
 
-Filler
+To configure permissions programmatically, see our API documentation on [permissions](/reference/system/permissions.md).
 
 :::
--->
 
 ## Configure Permissions
 
@@ -61,64 +54,16 @@ If you [configured the role's details](/configuration/users-roles-permissions/ro
 To configure custom access permissions for a role, follow these steps.
 
 1. Follow the steps to [configure permissions](#configure-permissions) and choose <span mi icon muted>rule</span> **Use
-   Custom** on step four and a side drawer will open.
-2. Configure custom access permission validations as desired.\
-   **Note:** For details, please see the relevant sub-section below.
+   Custom** on step four.\
+   A side drawer will open.
+2. Configure custom access permission validations as desired in the following sub-menus. For each CRUDs permission, you
+   will have one or more of the following sub-menus:
+   - **Item Permissions** — Set [filters](/app/filters.md) to define items the role is granted permissions.
+   - **Field Permissions** — Toggle to limit which fields the role is granted permissions.
+   - **Field Validation** — Set [filters](/app/filters.md) to define valid field values during create or update.
+   - **Field Presets** — Pass in JSON to set default field values for the role on
+     [create](/reference/items.html#create-an-item) or [update](/reference/items.html#update-an-item) of an item.
 3. Click <span mi btn>check</span> in the side drawer header to confirm and save custom access permissions.
-
-### Use Custom Create Permissions
-
-<video title="Custom Create Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
-
-- **Field Permissions** — Toggle to limit field access on item creation.
-- **Field Validation** — Set [filters](/app/filters.md) to limit creation of items based on field value(s).
-- **Field Presets** — Set default field values to create the item with.
-
-### Use Custom Read Permissions
-
-<video title="Custom Read Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
-
-- **Item Permissions** — Set [filters](/app/filters.md) to define which items can be read.
-- **Field Permissions** — Toggle to limit which fields can be read.
-
-::: warning Read Field Permissions
-
-Directus always requires read access to the Primary Key field (e.g., `id`) so it can uniquely identify items. Also, if a
-collection has "Archive" or "Sort" fields configured, those fields will also need read access to use the App's
-soft-delete and manual sorting features.
-
-:::
-
-### Use Custom Update Permissions
-
-<video title="Custom Update Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
-
-- **Item Permissions** — Set [filters](/app/filters.md) to define which items can be updated.
-- **Field Permissions** — Toggle to limit which fields can be updated.
-- **Field Validation** — Set [filters](/app/filters.md) to define which field values are valid in an update.
-- **Field Presets** — Set default field values to update the item with.
-
-### Use Custom Delete Permissions
-
-<video title="Custom Delete Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
-
-- **Item Permissions** — Set [filters](/app/filters.md) to define which items can be deleted.
-
-### Use Custom Share Permissions
-
-<video title="Custom Share Permissions" autoplay playsinline muted loop controls>
-	<source src="https://cdn.directus.io/" type="video/mp4" />
-</video>
-
-**Item Permissions** — Set [filters](/app/filters.md) to define which items can be shared.
 
 ## Toggle All Collection Permissions
 
@@ -140,22 +85,20 @@ To grant or restrict all CRUDS permissions to a collection at once, follow these
 </video>
 
 This is only available when **App Access** is enabled when you
-[configure role details](/configuration/users-roles-permissions/roles.md#configure-role-details).
+[configure role details](/configuration/users-roles-permissions/roles.md#configure-role-details). If you made any custom
+configurations to system collections, these will be reverted. To reset system permissions, follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role Name]**.
-2. Make sure [App Access](/configuration/users-roles-permissions/roles.md#configure-role-details) is enabled for the
-   role.
-3. At the bottom of **Permissions**, click **System Collections** to expand the menu and show system collections.
-4. Scroll to the bottom and choose the following options, beside **Reset System Permissions to:**:
+2. At the bottom of **Permissions**, click **System Collections** to show system collections.
+3. Scroll to the bottom and choose to **Reset System Permissions to:**
    - **App Access Minimum** — Reconfigures permissions on system collections to the bare minimum that are required to
      log in to the app.
    - **Recommended Defaults** — Reconfigures permissions on system collections to the recommended defaults.
-
-The reconfigurations are made automatically and instantly.
+4. Click **Reset** to confirm.
 
 :::tip
 
 You may notice that when you toggle on **App Access Minimum** permissions will be hard-coded so they cannot be
-restricted. However, you are free to reconfigure the **Recommended Defaults**.
+restricted. However, you are free to reconfigure the **Recommended Defaults** as desired.
 
 :::

@@ -11,11 +11,9 @@ readTime:
 :::tip Before you Begin
 
 
-
 :::
 
 :::tip Learn More
-
 
 
 :::
@@ -53,7 +51,7 @@ Instead of comma-separated emails, you can also add emails on a new line.
 To assign a role to an existing user, follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role]**.
-2. Under the **Users in Role** section, click <span mi btn muted>playlist_add</span> and a drawer will open.
+2. Under the **Users in Role** section, click **Add Existing** and a drawer will open.
 3. Select users as desired.
 4. Click <span mi btn>check</span> to confirm and the drawer will close. The added user(s) will now be visible under
    **Users in Role**.
@@ -68,7 +66,7 @@ To assign a role to an existing user, follow these steps.
 To create a user and assign their role _(and other details)_ follow these steps.
 
 1. Navigate to **Settings > Roles & Permissions > [Role]**.
-2. Under the **Users in Role** section, click <span mi btn>add</span> and a drawer will open.
+2. Under the **Users in Role** section, click **Create New** and a drawer will open.
 3. Fill in the user's details as desired. The newly created user will now be visible under **Users in Role**.
 4. Click <span mi btn>check</span> in the page header to confirm and the drawer will close.
 
@@ -85,7 +83,7 @@ To remove a user from a role, follow these steps.
 2. Click <span mi btn>check</span> in the page header to confirm and the drawer will close.
 
 Once removed from a role, the user(s) will be given a `NULL` role until assigned a new role, limiting them to public
-permissions.
+permissions. From here, you can [assign a another role](#assign-role-to-existing-user) to the user.
 
 :::tip
 
