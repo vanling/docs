@@ -9,7 +9,7 @@ readTime: 7 min read
 
 > Users, roles, and permissions work together to determine _who can access what_ inside your database.
 > [Users](/getting-started/glossary#users) are the individual accounts for authenticating into the project. Each user is
-> assigned a [role](/getting-started/glossary#roles) which defines its access
+> assigned a [role](/getting-started/glossary#roles) which defines its
 > [access permissions](/getting-started/glossary#permissions).
 
 ![Users, Roles and Permissions](https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/users-roles-permissions-20220909/users-roles-permissions-20220907A.webp)
@@ -57,9 +57,9 @@ other entity that can login and interact with the database.
 ### Roles
 
 In many cases, your project will have multiple users doing the same thing _(managers, writers, subscribers, etc)_. If we
-assigned permissions directly to the user, we would have to configure the same permissions over and over, which leads to
-a higher chance of misconfiguration and makes it tedious to change configurations for all users doing the same job. This
-problem is an example of [data duplication](/configuration/data-model.md#avoid-data-duplication). To avoid this, we
+assigned permissions directly to the user, we would have to configure the same permissions over and over, which makes it
+tedious to change configurations for all users doing the same job and also leads to a higher chance of misconfiguration.
+This problem is an example of [data duplication](/configuration/data-model.md#avoid-data-duplication). To avoid this, we
 create roles, configure the role's permissions once, then assign the role to users as desired.
 
 Regardless of your project, your SQL database will _always_ need an administrator role and a public role. In addition,
