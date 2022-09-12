@@ -1,11 +1,12 @@
 ---
 description:
+  Roles are essentially a bundle of pre-configured access permissions which you can (re)assign to any number of users.
 readTime:
 ---
 
 # Roles
 
-> Roles are essentially a bundle of pre-configured access permissions which you can (re)assigned to any number of users.
+> Roles are essentially a bundle of pre-configured access permissions which you can (re)assign to any number of users.
 
 :::tip Learn More
 
@@ -19,12 +20,8 @@ To configure roles programmatically, see our API documentation on [roles](/refer
 	<source src="https://cdn.directus.io/docs/v9/configuration/users-roles-permissions/roles-20220909/view-a-role-20220908A.mp4" type="video/mp4" />
 </video>
 
-To view an existing role, follow these steps.
-
-1. Navigate to **Settings > Roles & Permissions**.
-2. Click the desired role and a new page will open.
-
-Now you can see the role's permissions and other details.
+To view an existing role, navigate to **Settings > Roles & Permissions > [Role]**. Now you can see the role's
+permissions and other details.
 
 ## Create a Role
 
@@ -37,10 +34,9 @@ To create a role, follow these steps.
 1. Navigate to **Settings > Roles & Permissions**.
 2. Click <span mi btn>add</span> in the page header.
 3. Enter a unique **Role Name**.
-4. Toggle **App Access** and **Admin Access** as desired:
-   - **App Access** — Configures minimum access permissions required to log in to the App.
-   - **Admin Access** — Configures Admin Access permissions to all project data and settings.
-5. Click on **Save** to confirm.
+4. Toggle **App Access** and **Admin Access** as desired.\
+   To learn more, see [configure role details](#configure-role-details).
+5. Click **Save** to confirm.
 
 :::tip
 
@@ -58,27 +54,27 @@ Next, you will likely need to [configure the role's details](#configure-role-det
 In addition to defining permissions, roles come with a number of other configuration options. To configure a role's
 details, follow these steps.
 
-1. Navigate to **Settings > Roles & Permissions**.
-2. Click the desired role and a new page will open.
-3. Configure the following options as desired.
+1. Navigate to **Settings > Roles & Permissions > [Role]**.
+2. Configure the following options as desired:
    - **Permissions** — Configures [access permissions](#configure-permissions) for the role.
    - **Role Name** — Sets the name of the role.
-   - **Role Icon** — Sets icon used throughout the App when referencing this role.
+   - **Role Icon** — Sets icon used when referencing this role.
    - **Description** — Adds a note to help explain the role's purpose.
    - **App Access** — Auto-configures minimum permissions required to log in to the App.
    - **Admin Access** — Auto-configures full permissions to project data and Settings. Must be toggled off to restore
      ability to restrict permissions.
-   - **IP Access** — Adds IP addresses to whitelist. Type in and hit `Enter` (PC) or `return` (Mac) to confirm. Leave
+   - **IP Access** — Adds IP addresses to whitelist. Type IP in and hit `Enter` (PC) or `return` (Mac) to confirm. Leave
      empty to allow all IP addresses.
    - **Require MFA** — Forces all users within this role to use multi-factor authentication.
    - **Users in Role** — Lists all users within this role.
-4. Click <span mi btn>check</span> in the page header to confirm.
+3. Click <span mi btn>check</span> in the page header to confirm.
 
 :::tip App Access vs Admin Access
 
 Roles with _App Access_ enabled are created with the minimum permissions required to login to the app and access their
 own profile information. Roles that have neither _Admin_ nor _App Access_ enabled are created with public permissions.
-You can always reconfigure these permissions later.
+You can always [reconfigure permissions](/configuration/users-roles-permissions/permissions.md#configure-permissions)
+later.
 
 :::
 
@@ -90,7 +86,7 @@ You can always reconfigure these permissions later.
 
 To delete a role, follow these steps.
 
-1. Navigate to **Settings > Roles & Permissions <span mi icon dark>chevron_right</span> [Role Name]**.
+1. Navigate to **Settings > Roles & Permissions > [Role]**.
 2. Click <span mi btn dngr>delete</span> in the page header and a popup will appear.
 3. Click **Delete** to confirm.
 
@@ -105,6 +101,6 @@ permissions. However, you can always
 :::tip Built-in Roles
 
 Directus does not allow you to delete the built-in public role or administrator role. To learn more, please see the
-introductory section on [Directus Roles](/configuration/users-roles-permissions.html#directus-roles)
+introductory section on [Directus Roles](/configuration/users-roles-permissions.html#directus-roles).
 
 :::
