@@ -31,6 +31,7 @@ your event generates data, this will be stored in the Flow Object.
 - **Scope** — Set the specific events that trip this Trigger.
 - **Collections** — Set the Collections that trip this Trigger.
 - **Response Body** — Send Data for the last Operation, all Flow Object data, or the Flow key.
+<!-- https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/ -->
 
 ## Webhook
 
