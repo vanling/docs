@@ -192,8 +192,8 @@ function sidebar() {
 							// type: "page",
 						},
 						{
-							link: '/app/content/data-sharing',
-							text: 'Data Sharing',
+							link: '/app/content/shares',
+							text: 'Shares',
 							// type: "page",
 						},
 					],
@@ -265,21 +265,23 @@ function sidebar() {
 					link: '/configuration/data-model',
 					text: 'Data Model',
 					// type: "page",
-				},
-				{
-					link: '/configuration/data-model/collections',
-					text: 'Collections',
-					// type: "page",
-				},
-				{
-					link: '/configuration/data-model/fields',
-					text: 'Fields',
-					// type: "page",
-				},
-				{
-					link: '/configuration/data-model/relationships',
-					text: 'Relationships',
-					// type: "page",
+					items: [
+						{
+							link: '/configuration/data-model/collections',
+							text: 'Collections',
+							// type: "page",
+						},
+						{
+							link: '/configuration/data-model/fields',
+							text: 'Fields',
+							// type: "page",
+						},
+						{
+							link: '/configuration/data-model/relationships',
+							text: 'Relationships',
+							// type: "page",
+						},
+					],
 				},
 				{
 					link: '/configuration/users-roles-permissions',
@@ -397,9 +399,6 @@ function sidebar() {
 					// type: 'page',
 					link: '/reference/files',
 					text: 'Files',
-				},
-				{
-					// type: 'divider',
 				},
 				{
 					// type: 'page',
