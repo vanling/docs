@@ -8,9 +8,9 @@ readTime: 5 min read
 
 # Operations
 
-> When a Flow is triggered, it executes its chain of Operations, enabling you to do things like manage data within
-> Directus, transform the Flow's data, send information off to outside services, set conditional logic, trigger other
-> Flows, _and beyond!_
+> Operations are the individual actions in a flow. They enable you to do things like manage data within Directus,
+> transform the Flow's data, send information off to outside services, set conditional logic, trigger other Flows, _and
+> beyond!_
 
 :::tip Before You Begin
 
@@ -22,9 +22,7 @@ Please be sure to read the documentation on [Flows](/configuration/flows) and [T
 
 ![Condition](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/condition-20220603A.webp)
 
-A Condition routes to the next success or failure Operation based on some conditional `if` / `else` logic defined by a
-Filter query. That means if the query condition is met, the Flow will move forward with the success Operation.
-Otherwise, the failure Operation will initiate.
+A condition operation lets you use a [filter](/reference/filter-rules) to define the next operation in the flow.
 
 - **Condition Rules** — Create conditions with [Filter Rules](/reference/filter-rules).
 

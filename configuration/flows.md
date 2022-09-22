@@ -25,6 +25,13 @@ There is also dedicated API documentation on [Flows](/reference/system/flows) an
 
 ## What's a Flow?
 
+<!--
+Make this more narrative.
+One-liner description. A flow is a trigger, followed by a tree operations.
+With a Flows Object.
+Control Flow: Success and Failure of operations create a tree.
+-->
+
 ![What's a Flow?](https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/whats-a-flow-20220603A.webp)
 
 Each Flow begins with one Trigger, which defines the action that starts the Flow. Triggers can be an event or action
@@ -51,73 +58,114 @@ well all previously executed Operations in the Flow.
 
 To create a Flow, follow these steps:
 
-1. Navigate to **Settings > Flows** and click <span mi btn>add</span> in the Page Header. A drawer menu will open.
-2. Under **Flow Setup**, fill in a **Name** for the Flow and _(optionally)_ the following as desired:
-   - **Status** — Sets whether the Flow is active or inactive.
+1. Navigate to **Settings > Flows** and click <span mi btn>add</span> in the page header. A drawer will open.
+2. Under **Flow Setup**, fill in a **Name** for the Flow and the following _optional_ details:
+   - **Status** — Sets the Flow to active or inactive.
    - **Icon** — Adds a Material Icon used to help quickly identify the Flow.
    - **Description** — Sets a brief verbal description of the Flow.
    - **Color** — Sets a color to help identify the Flow.
-3. Select your **Activity and Logs Tracking** preference as desired.\
-   To learn more, please see [Activity](/reference/system/activity) and [Logs](#logs).
-4. Click <span mi btn>arrow_forward</span> to navigate to **Trigger Setup**. Select a
+   - **Activity and Logs Tracking** - Track Activity and [Logs](#logs), Activity, or neither.
+3. Click <span mi btn>arrow_forward</span> to navigate to **Trigger Setup**. Select a
    [Trigger](/configuration/flows/triggers) type and configure as desired.
-5. Click <span mi btn>done</span> in the Menu Header to be taken to the Flow Grid Area.\
+4. Click <span mi btn>done</span> in the Menu Header to be taken to the Flow Grid Area.\
    You will now see the Trigger Panel on the Flow Grid Area.
-6. On the Trigger Panel, click <span mi>add</span> and the **Create Operation** side menu will open.
-7. Choose a **Name**, an [Operation](/configuration/flows/operations) type, and configure as desired.\
+5. On the Trigger Panel, click <span mi>add</span> and the **Create Operation** side menu will open.
+6. Choose a **Name**, an [Operation](/configuration/flows/operations) type, and configure as desired.\
    Directus will convert the unique name into an Operation Key, used on the [Flow Object](#the-flow-object).\
    If you don't choose a name, the system will auto-generate a name and key.
-8. Next, click <span mi btn>done</span> in the Page Header to confirm and return to the Flow Grid Area.
-9. On the newly created Operation Panel:
+7. Next, click <span mi btn>done</span> in the Page Header to confirm and return to the Flow Grid Area.
+8. On the newly created Operation Panel:
    - Click <span mi icon>add</span> to add an Operation to execute if the current Operation is successful.
    - Click <span mi icon>remove</span> to add an Operation to execute if the current Operation fails.
-10. Repeat steps 8-10 to build out your Flow as desired.
-11. **Optional:** To edit a Trigger or Operation Panel, click <span mi icon>edit</span> and make any necessary edits.
-12. **Optional:** To delete an Operation Panel, click <span mi icon>more_vert</span> then
+9. Repeat steps 8-10 to build out your Flow as desired.
+10. **Optional:** To reconfigure a Trigger or Operation Panel, click <span mi icon>edit</span> and make any necessary
+    edits.
+11. **Optional:** To delete an Operation Panel, click <span mi icon>more_vert</span> then
     <span mi icon dngr>delete</span>.
+12. **Optional:** To unlink an operation, click <span mi icon prmry>adjust</span> and drag.
 
 ## The Flow Object
 
-When a Flow is triggered, Directus creates a JSON object to store all data generated within the Flow. When you create an
-Operation, this generates a key that appends to the Flow Object when the Operation executes. The key is used to add the
-associated Operation's data onto the Flows Object. As each Operation in the Flow executes, it has access to the Flow
-Object and therefore the data generated from preceding Operations.
+When a Flow is triggered, Directus creates a JSON object to store all data generated within the Flow's Trigger and
+operation(s).
+
+If the trigger involved any data, such as in an Event Hook, Webhook, or the "Another Flow" triggers, the data will be
+appended onto `payload` under the `$trigger` key.
+
+As each operation executes successfully, an `operation_key` is appended to the Flow Object. If any data was generated
+during the operation, it is stored under its relevant `operation_key`. Every operation has access to the Flow Object,
+and therefore data stored from preceding operations.
 
 The following JSON object is a simple example of a Flow with two Operations. The `$trigger`, `$last`, and
 `$accountability` keys are included on every Flow. An Operation key will be generated for each Operation that executes
 successfully.
 
-<!--
-@TODO: Uncomment once Azzy's doc is live:
-For more details, see the API Reference for [Flows](reference/system/flows) and [Operations](reference/system/operations).
--->
-
 ```json
 {
-	"$trigger": {}, // Data generated by the Flow's Trigger.
-	"$last": null, // Data from the last Operation in the flow, for easy access!
-	"$accountability": {}, // Provides details on who/what tripped the Trigger and generated this Flow Object.
-	"operation_key_1": "some_value",
-	"operation_key_2": null, // Value is null if no data was generated during an Operation.
-	"operation_key_3": {
-		// The data (if any) generated by the first Operation.
-		"some_nested_key": "Some nested value."
-	}
+	"$trigger": {
+		... // Data generated by the Flow trigger.
+		"payload": {"some_key": "Some payload value"}
+		... // More trigger data.
+	},
+	"$last": null, // Data from the last Operation in the flow, for easy access! Assigned NULL if no data is generated in last operation.
+	"$accountability": {}, // Provides details on who/what started the flow.
+	"operation_key_1": "some_value", // The data (if any) generated by the operation.
+	"operation_key_2": {
+		"nested_key": "Some nested value." // It will be common to have deeply nested JSON.
+	},
+	"operation_key_3": "{{ operation_key_2.nested_key }}" // You can use dot notation on triggers and operations to fetch values within the Flow Object.
+	...
 }
 ```
 
-### Flow Variables
-
-The Flow Object keys serve as variables that allow data access from every Flow Operation. Variables must be passed using
-the following double-moustache syntax. You can also use dot-notation to extract sub-nested values.
+You may notice the dot-notation with double-moustache syntax on `operation_key_3`. Directus lets you use keys from the
+Flow Object to use data on subsequent operations.
 
 ```json
 {
 	"operation_key_4": {
-		"user": "{{ $accountability.user }}"
+		"user": "{{ $accountability.user }}",
+		"attribute": "operation_key_3"
 	}
 }
 ```
+
+<!--
+$trigger
+$last
+$accountability
+-->
+
+In the end, the Flow Object is a JSON object, and so all keys and values must follow
+[JSON syntax](https://www.w3schools.com/js/js_json_syntax.asp). In general, this means the `key` must be a string, which
+can contain _but cannot begin with_ a number. It can also have the following types of values.
+
+```json
+{
+	"key": "string",
+	"key2": 1,
+	"key3": {},
+	"key4": [],
+	"key5": true,
+	"key6": null
+}
+```
+
+You cannot pass any type computational logic onto the using double-moustache syntax:
+
+```json
+{
+	"key": {{ 2 + 2}}
+}
+```
+
+:::tip
+
+If you wish to perform computations within a flow, you can use the
+[script operation](/configuration/flows/operations.md#script) or a
+[webhook](/configuration/flows/operations.md#webhook).
+
+:::
 
 ## Logs
 
