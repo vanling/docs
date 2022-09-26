@@ -7,8 +7,8 @@ readTime: 3 min read
 
 # Triggers
 
-> A Trigger defines the event that starts your Flow. This could be from an internal or external activity, such as
-> changes to data, logins, errors, incoming webhooks, cron jobs, operations from other Flows, or even the click of a
+> A trigger defines the event that starts your flow. This could be from an internal or external activity, such as
+> changes to data, logins, errors, incoming webhooks, cron jobs, operations from other flows, or even the click of a
 > button within the Data Studio.
 
 :::tip Before You Begin
@@ -29,8 +29,8 @@ Any data generated will be stored in the `$trigger`'s `payload` on the Flow Obje
     you to validate or transform the payload or even prevent completion outright.
   - [Action (Non-Blocking)](#actions) — Actions do not block anything. A non-blocking action is mostly useful for
     completing tasks in response to an event, without slowing the API.
-- **Scope** — Set the events that trip this Trigger.
-- **Collections** — Set the collections _whose events_ trip this Trigger.
+- **Scope** — Set the events that trip this trigger.
+- **Collections** — Set the collections _whose events_ trip this trigger.
 - **Response Body** — This is optional and only for Filter (Blocking) events. Defines Flow Object data to return to the
   event, overwriting the original payload. Choose to return:
   - **Data of last Operation** — Same as `$last`.
@@ -100,17 +100,23 @@ Triggers on an incoming HTTP request to: `/flows/trigger/:this-webhook-trigger-i
 trigger panel. You also have the option to return Flow Object data via **Response Body**.
 
 - **Method** — Choose whether the flow will be triggered by a `GET` or `POST` request from the dropdown.
-- **Asynchronous** — Toggle whether or not the Trigger responds asynchronously.
+- **Asynchronous** — Toggle whether or not the trigger responds asynchronously.
 - **Response Body** — Returns Flow Object data as a response body to the incoming HTTP request. Choose to return:
   - **Data of last Operation** — Same as `$last`.
   - **All Data** — Same as `$all`.
   - **Other** — Input any `key` from the Flow Object.
 
+:::tip
+
+If no data is defined in **Response Body**, the flow responds with an empty array.
+
+:::
+
 ## Schedule
 
 ![Schedule a Cron Job](https://cdn.directus.io/docs/v9/configuration/flows/triggers/triggers-20220603A/cron-20220602A.webp)
 
-This Trigger enables you to create Data at scheduled intervals, via 6-point cron job syntax.
+This Trigger enables you to create data at scheduled intervals, via 6-point cron job syntax.
 
 - **Interval** — Set the cron job interval to schedule when the Flow triggers.
 
@@ -118,8 +124,8 @@ This Trigger enables you to create Data at scheduled intervals, via 6-point cron
 
 ![Another Flow](https://cdn.directus.io/docs/v9/configuration/flows/triggers/triggers-20220603A/another-flow-20220602A.webp)
 
-This Trigger executes a Flow via the [Trigger Flow](/configuration/flows/operations#another-flow) Operation, allowing
-you to chain Flows.
+This trigger executes a flow via the [Trigger Flow](/configuration/flows/operations#another-flow) operation, allowing
+you to chain flows.
 
 - **Response Body** — Returns Flow Object data back to the operation that triggered the flow. Choose to return:
   - **Data of last Operation** — Same as `$last`.
@@ -130,8 +136,12 @@ you to chain Flows.
 
 ![Manual](https://cdn.directus.io/docs/v9/configuration/flows/triggers/triggers-20220603A/manual-20220602A.webp)
 
-This Trigger starts your Flow on a manual click of a button within the Directus App. When you use this Trigger, a
-**Flows** menu containing a button will appear in the sidebar of the specified collection page(s) and/or item pages.
+This Trigger starts your Flow on a manual click of a button within the Directus App. When you use this trigger, a
+**Flows** menu containing a button will appear in the sidebar of the specified collection page(s) and/or its item pages.
+
+The manual trigger must take in item ID(s) to activate. From the item page, the current item's ID is passed in. From the
+collection page, the button will be _grayed out_ until you select some number of items. These item IDs are passed into
+the the flow's `$trigger` object.
 
 - **Collections** — Choose the Collection(s) to add the button to.
 - **Location** — Choose to display the button within the Item Page, Collection Page, or both.

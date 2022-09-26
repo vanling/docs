@@ -1,15 +1,15 @@
 ---
 description:
-  When a Flow is triggered, it executes its chain of Operations, enabling you to do things like manage data within
-  Directus, transform the Flow's data, send information off to outside services, set conditional logic, trigger other
-  Flows, and beyond!
+  Operations are the individual actions in a flow. They enable you to do things like manage data within Directus,
+  transform the flow's data, send information off to outside services, set conditional logic, trigger other flows, and
+  beyond!
 readTime: 5 min read
 ---
 
 # Operations
 
 > Operations are the individual actions in a flow. They enable you to do things like manage data within Directus,
-> transform the Flow's data, send information off to outside services, set conditional logic, trigger other Flows, _and
+> transform the flow's data, send information off to outside services, set conditional logic, trigger other flows, _and
 > beyond!_
 
 :::tip Before You Begin
@@ -22,25 +22,90 @@ Please be sure to read the documentation on [Flows](/configuration/flows) and [T
 
 ![Condition](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/condition-20220603A.webp)
 
-A condition operation lets you use a [filter](/reference/filter-rules) to define the next operation in the flow.
+A condition operation lets you use a [filter](/reference/filter-rules) to determine the next operation chain in the
+flow, based on the value of data within the Flow Object.
 
 - **Condition Rules** — Create conditions with [Filter Rules](/reference/filter-rules).
+
+## Run Script
+
+<video autoplay playsinline muted loop controls title="Run Script">
+	<source src="" type="video/mp4" />
+</video>
+
+Run Script lets you add a custom script to your flow using vanilla JavaScript or TypeScript.
+
+The operation provides a default function template. Its _optional_ `data` parameter takes in the existing Flow Object as
+an argument. The function's returned value is appended under the Run Script operation key. This means you can access a
+value from a preceding operation, run simple a script, then output the new value onto the Flow Object.
+
+For example, let's say you have this function in a script operation, named `myScript`.
+
+```JSON
+// A preceding operation key from the Flow Object
+{
+  "previousOperation": {
+    "value": 5
+  }
+}
+```
+
+```TypeScript
+// Function in the myScript operation
+module.exports = function(data) {
+  return {
+    timesTwo: data.previousOperation.value * 2
+  }
+}
+
+```
+
+The returned value will be appended under the `myScript` operation key.
+
+```JSON
+{
+  "previousOperation": {
+    "value": 5
+  },
+  "myScript": {
+    "timesTwo": 10
+  }
+}
+
+```
 
 ## Create Data
 
 ![Create Data](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/create-data-20220603A.webp)
 
-This Operation creates Item(s) in a Collection.
+This operation creates item(s) in a collection.
 
-- **Collection** — Use the dropdown menu to select the Collection you'd like to create Items in.
-- **Permissions** — Select the scope of permissions used for this Operation.
+- **Collection** — Select the collection you'd like to create items in.
+- **Permissions** — Select the scope of permissions used for this operation.
 - **Emit Events** — Toggle whether the event is emitted.
-- **Payload** — Create Item(s) in a Collection. To learn more, see [API > Items](/reference/items).
+- **Payload** — Define the payload to create item(s) in a collection.
 
 :::tip
 
-Make sure the Operation is scoped with the [permissions](/configuration/users-roles-permissions) necessary to create
-Items.
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
+event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.create` which
+contains an operation that tries to create another a item in that `<collection>`. Typically, this would throw an
+infinite loop of created items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
+triggers other event hooks.
+
+:::
+
+:::tip
+
+Make sure the operation is scoped with the [permissions](/configuration/users-roles-permissions) necessary to create
+items.
+
+:::
+
+:::tip
+
+To learn about payload requirements when creating an item, see [API Reference > Items](/reference/items).
 
 :::
 
@@ -48,17 +113,37 @@ Items.
 
 ![Delete Data](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/delete-data-20220603A.webp)
 
-This Operation deletes Item(s) from a Collection by ID or query.
+This operation deletes item(s) from a collection by either ID or query.
 
-- **Permissions** — Set the scope of permissions used for this Operation.
 - **Collection** — Use the dropdown menu to select the Collection you'd like to delete Items from.
+- **Permissions** — Set the scope of permissions used for this Operation.
+- **Emit Events** — Toggle whether the event is emitted.
 - **IDs** — Set Item IDs and press enter to confirm. Click the ID to remove.
 - **Query** — Select Items to delete with a query. To learn more, see [Filter Rules](/reference/filter-rules).
 
 :::tip
 
-Make sure the Operation is scoped with the [permissions](/configuration/users-roles-permissions) necessary to delete
-Items.
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
+event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.delete` which
+contains an operation that then tries to delete another a item in that `<collection>`. Typically, this would throw an
+infinite loop of deleted items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
+triggers other event hooks.
+
+:::
+
+:::tip
+
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger event
+hooks or any another behavior.
+
+:::
+
+:::tip
+
+Make sure the operation is scoped with the [permissions](/configuration/users-roles-permissions) necessary to delete
+items.
 
 :::
 
@@ -66,26 +151,57 @@ Items.
 
 ![Read Data](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/read-data-20220603A.webp)
 
-This Operation reads Item(s) from a Collection and adds them onto the Flow Object. You may select Items by their ID or
-run a query to select the Items you wish to update.
+This operation reads item(s) from a collection and adds them onto the Flow Object. You may select Items by their ID or
+by running a query.
 
 - **Permissions** — Set the scope of permissions used for this Operation.
 - **Collections** — Select the Collection from which you'd like to read Items.
 - **IDs** — Input the ID for Items you wish to read and press enter. Click the ID to remove.
 - **Query** — Select the Items with a query. To learn more, see [Filter Rules](/reference/filter-rules).
+- **Emit Events** — Toggle whether the event is emitted.
+
+:::tip
+
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
+event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.read` which
+contains an operation that then tries to read another a item in that `<collection>`. Typically, this would throw an
+infinite loop of read items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
+triggers other event hooks.
+
+:::
+
+:::tip
+
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger event
+hooks or any another behavior.
+
+:::
 
 ## Update Data
 
 ![Update Data](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/update-data-20220603A.webp)
 
-This Operation updates Item(s) in a Collection. Similar to Read Data, you may select Items by their ID or run a query to
-select the Items you wish to update.
+This operation updates item(s) in a collection. You may select item(s) to update by their ID or by running a query.
 
-- **Permissions** — Set the Role that this Operation will inherit permissions from.
 - **Collections** — Select the Collection from which you'd like to read Items.
+- **Permissions** — Set the Role that this Operation will inherit permissions from.
+- **Emit Events** — Toggle whether the event is emitted.
 - **IDs** — Input the ID for Item(s) you wish to read and press enter. Click the ID to remove.
 - **Payload** — Update Items in a Collection. To learn more, see [API > Items](/reference/items).
 - **Query** — Select Items to update with a query. To learn more, see [Filter Rules](/reference/filter-rules).
+
+:::tip
+
+**Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
+trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
+event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.update` which
+contains an operation that then tries to update another a item in that `<collection>`. Typically, this would throw an
+infinite loop of updated items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
+triggers other event hooks.
+
+:::
 
 ## Log to Console
 
@@ -100,7 +216,7 @@ is a key tool for troubleshooting Flow configuration.
 
 ![Send Email](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/send-email-20220603A.webp)
 
-This Operation sends an email. Flow Object keys can be used as variables, which means you can use an array of emails
+This operation sends an email. Flow Object keys can be used as variables, which means you can use an array of emails
 from a previous step in Flows.
 
 - **To** — Set the email addresses. Hit `↵` to save the email. Click an email to remove it.
