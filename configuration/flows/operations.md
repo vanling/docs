@@ -27,6 +27,11 @@ flow, based on the value of data within the Flow Object.
 
 - **Condition Rules** — Create conditions with [Filter Rules](/reference/filter-rules).
 
+If the Filter Rule is configured properly, a `null` value will be appended under its Flow Object operation key,
+regardless of if the condition was met or not. If the condition is misconfigured, it will append an array containing an
+object you can use to help debug the misconfiguration. This object has two keys of importance `_original`, which will
+have the Flow Object, and `details`, which will provide information to help identify the misconfiguration.
+
 ## Run Script
 
 <video autoplay playsinline muted loop controls title="Run Script">
@@ -37,7 +42,7 @@ Run Script lets you add a custom script to your flow using vanilla JavaScript or
 
 The operation provides a default function template. Its _optional_ `data` parameter takes in the existing Flow Object as
 an argument. The function's returned value is appended under the Run Script operation key. This means you can access a
-value from a preceding operation, run simple a script, then output the new value onto the Flow Object.
+value from a preceding operation, run simple a script, then append the new value onto the Flow Object.
 
 For example, let's say you have this function in a script operation, named `myScript`.
 
@@ -74,6 +79,14 @@ The returned value will be appended under the `myScript` operation key.
 
 ```
 
+:::tip
+
+We just showed you how to pass the Flow Object into a Run Script operation, run a simple calculation on its data, and
+append the new data back onto the Flow Object. But remember, it's your function and you're not obligated to take all
+three steps. Use it as you see fit.
+
+:::
+
 ## Create Data
 
 ![Create Data](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/create-data-20220603A.webp)
@@ -90,9 +103,9 @@ This operation creates item(s) in a collection.
 **Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
 trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
 event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.create` which
-contains an operation that tries to create another a item in that `<collection>`. Typically, this would throw an
-infinite loop of created items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
-triggers other event hooks.
+contains an operation that tries to create another item in that `<collection>`. Typically, this would throw an infinite
+loop of created items. However, if you toggle **Emit Events** off, then the operation within the flow no longer triggers
+other event hooks.
 
 :::
 
@@ -126,7 +139,7 @@ This operation deletes item(s) from a collection by either ID or query.
 **Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
 trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
 event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.delete` which
-contains an operation that then tries to delete another a item in that `<collection>`. Typically, this would throw an
+contains an operation that then tries to delete another item in that `<collection>`. Typically, this would throw an
 infinite loop of deleted items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
 triggers other event hooks.
 
@@ -165,7 +178,7 @@ by running a query.
 **Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
 trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
 event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.read` which
-contains an operation that then tries to read another a item in that `<collection>`. Typically, this would throw an
+contains an operation that then tries to read another item in that `<collection>`. Typically, this would throw an
 infinite loop of read items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
 triggers other event hooks.
 
@@ -197,7 +210,7 @@ This operation updates item(s) in a collection. You may select item(s) to update
 **Emit Events** toggles the operation's "visibility" throughout Directus. For example, if togged on, this operation will
 trigger relevant event hooks in other flows or custom extensions. If toggled off, the operation will not trigger other
 event hooks. This is useful in the situation where you have a flow being triggered by `<collection>.items.update` which
-contains an operation that then tries to update another a item in that `<collection>`. Typically, this would throw an
+contains an operation that then tries to update another item in that `<collection>`. Typically, this would throw an
 infinite loop of updated items. However, if you toggle **Emit Events** off, then the operation within the flow no longer
 triggers other event hooks.
 
@@ -207,8 +220,9 @@ triggers other event hooks.
 
 ![Log to Console](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/log-to-console-20220603A.webp)
 
-This Operation outputs something to the server-side console as well as the [Log Panel](/configuration/flows#logs). This
-is a key tool for troubleshooting Flow configuration.
+This Operation outputs something to the server-side console as well as the [Log Panel](/configuration/flows#logs) within
+the Data Studio. This is a key tool for troubleshooting Flow configuration. A Log operation's key will have a null value
+on the Flow Object.
 
 - **Message** — Sets a [log message](/configuration/flows#logs).
 
