@@ -627,7 +627,8 @@ Content-Disposition: form-data; name="file"; filename="schema.yaml"
 Content-Type: text/yaml
 
 version: 1
-directus: 9.14.0
+directus: 9.18.0
+vendor: postgres
 collections:
   - collection: articles
     meta:
@@ -738,7 +739,6 @@ fields:
     type: string
 relations: []
 
-...
 ```
 
 ### GraphQL
