@@ -18,9 +18,9 @@ readTime: 4 min read
 
 ## Backing-up a Project
 
-1. Make a copy of the **files within each storage adapter**, and store them in a safe place
-2. Make a copy of the **Env file** (`/api/.env`), and store it in a safe place
-3. Create a database dump
+1. Make a copy of the **files within each storage adapter**, and store them in a safe place.
+2. Make a copy of the `/api/.env` file, and store it in a safe place.
+3. Create a database dump.
 
 ## Migrating a Project
 
@@ -53,12 +53,12 @@ If you ran any database migrations for a newer version, you can revert those by 
 ::: tip Pure SQL
 
 After completing this process, you will be left with a pure SQL database, with no trace that Directus was ever
-installed. Any external services connecting to your database's project tables directly (eg: SQL queries) should continue
-working normally.
+installed. Any external services connecting to your database's project tables directly (e.g., SQL queries) should
+continue working normally.
 
 :::
 
-## Migrating from v8
+## Migrating from Version 8
 
 There are two ways to migrate from an existing Directus 8.X instance:
 
@@ -70,8 +70,8 @@ Be sure to check the [Breaking changes](#breaking-changes) if you are consuming 
 ## Automated Script
 
 We created a (community maintained) script, that will automatically copy over the schema, content, files, users, and
-roles from an existing v8 instance to a new v9 instance. This is the most hands-off approach to moving from a v8 to a v9
-instance, and is the recommended way of migrating your v8 instance.
+roles from an existing v8 instance to a new v8 instance. This is the most hands-off approach to moving from a v8 to a
+version v9 instance, and is the recommended way of migrating your v8 instance.
 
 ::: tip
 
@@ -84,7 +84,7 @@ This tool will copy over:
 
 - Schema (collections / fields)
 - Files (including file contents)
-- User data (eg all items in all collections)
+- User data (e.g., all items in all collections)
 - Roles
 - Users
 
@@ -129,6 +129,6 @@ This would also be a good time to reconfigure your permissions, to ensure they a
 
 ## Breaking changes
 
-- [Filter operators](/reference/filter-rules) have changed, now they are preceded with an underscore eg:
+- [Filter operators](/reference/filter-rules) have changed, now they are preceded with an underscore e.g.:
   `/items/users?filter[comments.thread.title][like]=Directus` is now
   `/items/users?filter[comments][thread][title][_like]=Directus`

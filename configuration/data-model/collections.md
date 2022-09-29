@@ -34,15 +34,15 @@ Collections are data tables. Typically, you access items within a collection in 
 System collections store the data and configuration details required to power your project.
 
 Since system collections store information that powers your Directus project. You cannot reconfigure system collections
-or any of their default fields, as reconfigurations would break your project. However, you _can_ create and configure
-new fields on a system collection. This lets you safely customize your data model as desired.
+or any of their default fields, as any reconfigurations would break your project. However, you _can_ create and
+configure new fields on a system collection. This lets you safely customize your data model as desired.
 
 System collections are not displayed in the Content Module. The following table will go over the logic and functionality
 each system collection is responsible for, as well as where to find relevant App and API documentation.
 
 | System Collection | Purpose                                                                                                                              | APP                                                                               | API                                              |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Activity          | Tracks and stores all events within Directus, giving full accountability over everything.                                            | [Actvitiy Log](/configuration/activity-log)                                       | [Activity](/reference/system/activity)           |
+| Activity          | Tracks and stores all events within Directus, giving full accountability over everything.                                            | [Activity Log](/configuration/activity-log)                                       | [Activity](/reference/system/activity)           |
 | Collections       | Stores data table & configuration details each and every Collection.                                                                 | [Collections](/configuration/data-model/collections)                              | [Collections](/reference/system/collections)     |
 | Dashboards        | Stores dashboard configuration details and all relationally linked panels.                                                           | [Insights](/app/insights)                                                         | **N/A**                                          |
 | Fields            | Stores configuration details for each field.                                                                                         | [Fields](/configuration/data-model/fields/)                                       | [Fields](/reference/system/fields)               |
@@ -273,8 +273,7 @@ choose to include this field, the collection's archive settings will be automati
 
 :::tip Archive Field Values
 
-The archive fields can contain any number of additional values besides the archived and un-archived values defined
-above.
+The archive fields can contain any number of additional values besides the archived and unarchived values defined above.
 
 :::
 
@@ -295,7 +294,7 @@ The sort feature enables users to [manually sort Items](/app/content/collections
 Studio. This is typically shown on the **Content Module > Collection Page**. It can also be used for sorting items
 within [Junction Collections](/getting-started/glossary#junction-collections). A standard field, configured with an
 `INTEGER` data type, is required. As shown in the video, fields which cannot serve as sort fields will be grayed out and
-un-selectable in the Sort Field dropdown.
+unselectable in the Sort Field dropdown.
 
 **Sort Field** — Select a field to custom sort and order items. Click **Deselect** to disable.
 
@@ -318,7 +317,7 @@ configured for you.
 
 ::: tip Interface Sorting
 
-To configure manual sorting within a relational Interface (eg: M2M, O2M, or M2A), configure as above, but also set the
+To configure manual sorting within a relational Interface (e.g., M2M, O2M, or M2A), configure as above, but also set the
 **Sort Field** within the relationship section of the field's configuration drawer.
 
 :::

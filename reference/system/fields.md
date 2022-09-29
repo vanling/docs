@@ -20,7 +20,7 @@ Name of the collection the field resides in.
 The identifier of the field. This matches the table column name.
 
 `type` **string**\
-The Directus data type of the field. See [Types](/getting-started/glossary#app) for possible options.
+The Directus data type of the field. See [Types](/getting-started/glossary#types) for possible options.
 
 #### Meta
 
@@ -73,7 +73,7 @@ Short description displayed in the Admin App.
 
 "Raw" database information. Based on the database vendor used, different information might be returned. The following
 are available for all drivers. Note: schema is optional. If a field exist in directus_fields, but not in the database,
-it's an alias commonly used for relational (o2m) or presentation purposes in the Admin App.
+it's an alias commonly used for relational (O2M) or presentation purposes in the Admin App.
 
 `name` **string**\
 Identifier of the field. Matches the column name in the database.
@@ -88,7 +88,7 @@ The datatype as used in the database. Note: this value is database vendor specif
 The configured default value for the column.
 
 `max_length` **integer**\
-Configured length for varchar-type columns.
+Configured length for varchar type columns.
 
 `numeric_precision` **integer**\
 Precision for integer/float/decimal type fields.

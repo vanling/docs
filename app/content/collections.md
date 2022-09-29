@@ -22,6 +22,29 @@ Link to tutorial
 
 :::
 
+## Toggle Hidden Collections
+
+<video autoplay playsinline muted loop controls title="Toggle Hidden Collections">
+	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-collections/content-collections-20220816/toggle-hidden-collections-20220816A.mp4" type="video/mp4" />
+</video>
+
+Some projects may have dozens or even hundreds of collections, which can be overwhelming to sort through. To ease this
+problem, Admins can choose to
+[hide collections by default](/configuration/data-model/collections.html#toggle-collection-visibility) on the Navigation
+bar. Users can then show or hide hidden collections as desired. To toggle collection visibility, follow these steps.
+
+1. Navigate to the Content Module.
+2. Right-click in the Navigation Bar.
+3. Click **Show/Hide Hidden Collections** to toggle visibility.
+
+:::tip
+
+This functionality is purely aesthetic, provided to help you _visually cleanup_ the Navigation Bar. For admins who'd
+like to block users' access permissions, please see
+[users, roles and permissions](/configuration/users-roles-permissions).
+
+:::
+
 ## Adjust Page Layout
 
 <video autoplay playsinline muted loop controls title="Layouts">
@@ -125,15 +148,28 @@ Only available if an [Archive field](/configuration/data-model/collections#archi
 
 :::
 
-## Create Presets and Bookmarks
+## Create a Bookmark
 
 <video autoplay playsinline muted loop controls title="Create Presets and Bookmarks">
 	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-collections/content-collections-20220415A/presets-and-bookmarks-20220415A.mp4" type="video/mp4" />
 </video>
 
-Save how a Collection Page looks so that you can return to the exact same view later, including details such as the
-Layout, searches, filters, sorting, ordering, etc. To learn more, see our guide on
-[Presets and Bookmarks](/configuration/presets-bookmarks).
+Save how a Collection Page looks so that you can return to the exact same view later. This includes details such as the
+Layout, search queries, filters, custom sort & order, etc. To create a Bookmark from the Collection Page, follow these
+steps.
+
+1. Navigate to the desired collection.
+2. Click <span mi btn muted>bookmark_outline</span> in the page header.
+3. Enter a **Name** _(and optionally)_ an **Icon** and **Color**.
+4. Click **Save** to confirm.
+
+Your Bookmark will appear in the Navigation Bar, under the associated Collection Page.
+
+:::tip Learn More
+
+To learn more, see our guide on [Presets and Bookmarks](/configuration/presets-bookmarks).
+
+:::
 
 ## Import / Export Items
 

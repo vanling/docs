@@ -104,7 +104,7 @@ team so that proper fixes can be issued to users. Our policy is to credit all re
 order to receive credit, security researchers must follow responsible disclosure practices, including:
 
 - They do not publish the vulnerability prior to the Directus team releasing a fix for it
-- They do not divulge exact details of the issue, eg: through exploits or proof-of-concepts
+- They do not divulge exact details of the issue, e.g., through exploits or proof-of-concepts
 
 ## Submitting a Pull-Request
 

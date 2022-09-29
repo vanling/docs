@@ -1,5 +1,5 @@
 ---
-description: How to mantually install Directus.
+description: How to manually install Directus.
 readTime: 1 min read
 ---
 

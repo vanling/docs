@@ -79,7 +79,7 @@ export default {};
 </script>
 ```
 
-A route component provides an blank canvas for creating anything you need. You can use the globally registered
+A route component provides a blank canvas for creating anything you need. You can use the globally registered
 `private-view` component to get access to Directus' page structure consisting of the module bar, the navigation, the
 sidebar, the header and the main content area.
 
@@ -168,7 +168,7 @@ export default {
 
 In the above example, you can see that:
 
-- The `api` field gets injected into the component and becomes available as an attribute of the component (ie
+- The `api` field gets injected into the component and becomes available as an attribute of the component (i.e.,
   `this.api`)
 - When the component is mounted, it uses `this.api.get` to request a list of all available collections
 - The names of the collections are rendered into a list in the component's template

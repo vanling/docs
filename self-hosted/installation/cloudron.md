@@ -1,5 +1,5 @@
 ---
-description: How to host Directus on Cloudron.
+description: How to host Directus on Cloudron
 readTime: 1 min read
 ---
 

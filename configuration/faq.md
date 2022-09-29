@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-> TK
+>
 
 ## Is it possible to update the admin user password via CLI?
 

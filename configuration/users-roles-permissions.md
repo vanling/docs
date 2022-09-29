@@ -29,7 +29,7 @@ Directus comes with two Roles out of the box, Admin and Public. The Admin role p
 the app, and this cannot be limited. This Admin Role provides full, app-wide control to the Project owners,
 administrators, and creators. The Public role comes with all permissions turned off by default and these can be fully
 reconfigured as needed. This Public role determines the access permissions given for any unauthenticated request to app
-data including un-authenticated users, visitors to your website or any other web request to your Directus Project's API.
+data including unauthenticated users, visitors to your website or any other web request to your Directus Project's API.
 
 In addition, Admins can create as many Roles as they wish and configure permissions granularly.
 
@@ -68,7 +68,7 @@ case-by-case basis by administrators.
 - **App Access** — Allows logging in to the App
 - **Admin Access** — Gives full permission to project data and Settings
 - **IP Access** — An allow-list of IP addresses from which the platform can be accessed, empty allows all
-- **Require 2FA** — Forces all users within this role to use two-factor authentication
+- **Require MFA** — Forces all users within this role to use two-factor authentication
 - **Users in Role** — A list of all users within this role
 
 ## Delete a Role
@@ -143,7 +143,7 @@ _action_.
 
 ::: warning Read Field Permissions
 
-The Directus App always requires read access to the Primary Key field (eg: `id`) so it can uniquely identify items.
+The Directus App always requires read access to the Primary Key field (e.g., `id`) so it can uniquely identify items.
 Also, if a Collection has "Archive" or "Sort" fields configured, those fields will also need read access to use the
 App's soft-delete and manual sorting features.
 

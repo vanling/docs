@@ -31,7 +31,7 @@ Add links once "archive item" is created
 	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-items/content-items-20220415A/create-an-item-20220415A.mp4" type="video/mp4" />
 </video>
 
-To create an Item, follow the steps below:
+To create an Item, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Click <span mi btn>add</span> in the Page Header to open the Item Page.
@@ -51,7 +51,7 @@ model settings, the App will skip step two above and automatically open the Item
 	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-items/content-items-20220415A/edit-an-item-20220415A.mp4" type="video/mp4" />
 </video>
 
-To edit an Item's field values, follow the steps below:
+To edit an Item's field values, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Click on the desired Item to open the Item Page.
@@ -77,13 +77,29 @@ automatically open the Item Page.
 
 :::
 
+## Advanced Save Options
+
+<video autoplay playsinline muted loop controls title="Advanced Save Options">
+	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-items/content-items-20220816/advanced-save-options-20220816A.mp4" type="video/mp4" />
+</video>
+
+To do an advanced save when you create or edit an item, follow these steps.
+
+1. Begin to [create an item](#create-an-item) or [edit an item](#edit-an-item).
+2. Click <span mi icon muted>more_vert</span> to open the context menu.
+3. Click to choose your advanced save method. You have four options:
+   - **Save and Stay**
+   - **Save and Create New**
+   - **Save as Copy**
+   - **Discard all Changes**
+
 ## Archive an Item
 
 <video autoplay playsinline muted loop controls title="Archive an Item">
 	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-items/content-items-20220415A/archive-an-item-20220415A.mp4" type="video/mp4" />
 </video>
 
-To archive an Item:
+To archive an Item, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Select the desired Item to open the Item Page.
@@ -104,7 +120,7 @@ model settings.
 </video>
 
 As you update Field Values on Items, Directus saves these [Revisions](/getting-started/glossary#revisions), and they can
-be compared side-by-side to the current state. To revert an Item:
+be compared side-by-side to the current state. To revert an Item, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Select the desired Item to open the Item Page.
@@ -134,7 +150,7 @@ You can also revert Items [programmatically via the API](/reference/system/revis
 </video>
 
 Comments is a collaborative tool that are left on an Item in the sidebar and remain there for you and other team members
-to view. To create a comment:
+to view. To create a comment, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Select the desired Item to open the Item Page.
@@ -152,8 +168,8 @@ notification, as well as an email directing them to your comment.
 :::tip Edit and Delete Comments
 
 Each comment displays the time it was created in its upper right-hand corner. Hover over this and the
-<span mi icon>more_horiz</span> menu will appear. Click this menu to <span mi icon>edit</span> edit or
-<span mi icon>delete</span> delete the comment.
+<span mi icon>more_horiz</span> menu will appear. Click <span mi icon>edit</span> to edit or <span mi icon>delete</span>
+to delete the comment.
 
 :::
 
@@ -163,7 +179,7 @@ Each comment displays the time it was created in its upper right-hand corner. Ho
 	<source src="https://cdn.directus.io/docs/v9/app-guide/content/content-items/content-items-20220415A/delete-an-item-20220415A.mp4" type="video/mp4" />
 </video>
 
-To delete an Item:
+To delete an Item, follow these steps.
 
 1. Navigate to the Content Module and select the desired Collection.
 2. Select the desired Item to open the Item Page.

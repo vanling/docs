@@ -117,7 +117,7 @@ gtag('config', 'UA-24637628-7');
 		},
 		sidebar: sidebar(),
 		editLink: {
-			pattern: 'https://github.com/directus/directus/edit/main/:link',
+			pattern: 'https://github.com/directus/docs/edit/main/:path',
 			text: 'Edit this page on GitHub',
 		},
 	},
@@ -192,8 +192,8 @@ function sidebar() {
 							// type: "page",
 						},
 						{
-							link: '/app/content/data-sharing',
-							text: 'Data Sharing',
+							link: '/app/content/shares',
+							text: 'Shares',
 							// type: "page",
 						},
 					],
@@ -267,7 +267,17 @@ function sidebar() {
 					// type: "page",
 					items: [
 						{
-							link: '/configuration/relationships',
+							link: '/configuration/data-model/collections',
+							text: 'Collections',
+							// type: "page",
+						},
+						{
+							link: '/configuration/data-model/fields',
+							text: 'Fields',
+							// type: "page",
+						},
+						{
+							link: '/configuration/data-model/relationships',
 							text: 'Relationships',
 							// type: "page",
 						},
@@ -367,9 +377,6 @@ function sidebar() {
 					// type: 'page',
 					link: '/reference/files',
 					text: 'Files',
-				},
-				{
-					// type: 'divider',
 				},
 				{
 					// type: 'page',

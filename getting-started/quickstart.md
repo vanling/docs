@@ -173,7 +173,7 @@ of creating a new Role.
 ## 7. Connect to the API
 
 Now that your Project has some content in it which is exposed to the Public, it's time to start using this content
-externally! Data can be accessed in a number of ways, including the REST and GraphQL API Enpoints. In this case, we'll
+externally! Data can be accessed in a number of ways, including the REST and GraphQL API endpoints. In this case, we'll
 use the `/items/` [REST API endpoint](/reference/items) to retrieve the Item we just created.
 
 1. Open `http://your-project-url.directus.app/items/articles`.\

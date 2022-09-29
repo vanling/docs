@@ -1,7 +1,7 @@
 ---
 description:
-  The platform supports internationalization across the entire App. Many languages are currently supported, with more
-  being added all the time. Anyone can add or refine any languages through the integration with CrowdIn.
+  Directus supports internationalization across the entire App. Many languages are currently supported, with more being
+  added all the time. Anyone can add or refine any languages through the integration with CrowdIn
 readTime: 2 min read
 ---
 

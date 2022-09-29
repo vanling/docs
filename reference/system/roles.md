@@ -26,7 +26,7 @@ Icon for the role. Displayed in the Admin App.
 Description for the role. Displayed in the Admin App.
 
 `ip_access` **csv**\
-CSV of IP addresses that have access to this role. Allows you to configure an allowlist of IP addresses.
+A CSV of IP addresses that have access to this role. Allows you to configure an allowlist of IP addresses.
 
 `enforce_tfa` **boolean**\
 Whether or not Two-Factor Authentication is required for users in this role.

@@ -58,7 +58,7 @@ persistence (note that these can be changed through environment variables)
 
 - `/directus/uploads` for uploads
 - `/directus/database` (only when using SQLite and not configured to a different folder)
-- `/directus/extensions` for extension loadings
+- `/directus/extensions` for loading extensions
 
 ## Docker Compose
 

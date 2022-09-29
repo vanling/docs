@@ -212,7 +212,7 @@ Updating records in a many-to-any is identical to the other relationship types.
 ## SEARCH HTTP Method
 
 When using the REST API to read multiple items by (very) advanced filters, you might run into the issue where the URL
-simply can't hold enough data to include the full query structure. In those cases, you can use the SEARCH http method as
+simply can't hold enough data to include the full query structure. In those cases, you can use the SEARCH HTTP method as
 a drop-in replacement for GET, where you're allowed to put the query into the request body as follows:
 
 **Before:**

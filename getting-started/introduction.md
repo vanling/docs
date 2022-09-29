@@ -38,7 +38,7 @@ or remove it anytime, with no impact on your existing data model. That means you
 
 **The App and APIs**\
 Once your database is introspected and abstracted, Directus dynamically generates REST and GraphQL API endpoints to manage
-your data with granular control. You also get CLI tools for file management and a complete Javascript SDK.
+your data with granular control. You also get CLI tools for file management and a complete JavaScript SDK.
 
 The API and CLI power the no-code App. In other words, the App is just a GUI that provides no-code access to the API.
 This architecture is how Directus democratizes the database and provides control to [the whole team](#who-s-it-for).
@@ -200,7 +200,7 @@ Cloud architecture can be complicated and resource-intensive. Directus Cloud pro
 infrastructure, and automatic updates so developers can focus on the app's core business logic. Directus Cloud also
 offers [Cloud Exclusive Extensions](/cloud/glossary#cloud-exclusives), enhancing Directus Core with even more features.
 
-With free Dirctus Cloud account, you can set up Teams to organize Projects, Project billing, and other Team Members
+With free Directus Cloud account, you can set up Teams to organize Projects, Project billing, and other Team Members
 however you need. You'll be able to get a Project running in about 90 seconds. Then as Project growth changes over time,
 scale service up or down as needed at the click of a button. The cloud dashboard also provides simple, straightforward
 analytics to help understand traffic and inform scaling decisions.

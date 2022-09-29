@@ -214,7 +214,7 @@ All `LOGGER_*` environment variables are passed to the `options` configuration o
 variables are passed to the `options` configuration of a
 [`Pino-http` instance](https://github.com/pinojs/pino-http#api). Based on your project's needs, you can extend the
 `LOGGER_*` environment variables with any config you need to pass to the logger instance. If a LOGGER_LEVELS key is
-added, these values will be passed to the logger formatter, as described
+added, these values will be passed to the logger frontmatter, as described
 [here](https://github.com/pinojs/pino/blob/master/docs/help.md#mapping-pino-log-levels-to-google-cloud-logging-stackdriver-severity-levels)
 for example. The format for adding LEVELS values is:
 `LOGGER_LEVELS="trace:DEBUG,debug:DEBUG,info:INFO,warn:WARNING,error:ERROR,fatal:CRITICAL"`
@@ -239,20 +239,21 @@ into unexpected behaviors.
 
 ## Database
 
-| Variable               | Description                                                                                                                                        | Default Value                 |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `DB_CLIENT`            | **Required**. What database client to use. One of `pg` or `postgres`, `mysql`, `oracledb`, `mssql`, `sqlite3`, `cockroachdb`.                      | --                            |
-| `DB_HOST`              | Database host. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
-| `DB_PORT`              | Database port. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
-| `DB_DATABASE`          | Database name. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
-| `DB_USER`              | Database user. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
-| `DB_PASSWORD`          | Database user's password. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                           | --                            |
-| `DB_FILENAME`          | Where to read/write the SQLite database. **Required** when using `sqlite3`.                                                                        | --                            |
-| `DB_CONNECTION_STRING` | When using `pg`, you can submit a connection string instead of individual properties. Using this will ignore any of the other connection settings. | --                            |
-| `DB_POOL__*`           | Pooling settings. Passed on to [the `tarn.js`](https://github.com/vincit/tarn.js#usage) library.                                                   | --                            |
-| `DB_EXCLUDE_TABLES`    | CSV of tables you want Directus to ignore completely                                                                                               | `spatial_ref_sys,sysdiagrams` |
-| `DB_CHARSET`           | Charset/collation to use in the connection to MySQL/MariaDB                                                                                        | `UTF8_GENERAL_CI`             |
-| `DB_VERSION`           | Database version, in case you use the PostgreSQL adapter to connect a non-standard database. Not normally required.                                | --                            |
+| Variable                   | Description                                                                                                                                        | Default Value                 |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `DB_CLIENT`                | **Required**. What database client to use. One of `pg` or `postgres`, `mysql`, `oracledb`, `mssql`, `sqlite3`, `cockroachdb`.                      | --                            |
+| `DB_HOST`                  | Database host. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
+| `DB_PORT`                  | Database port. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
+| `DB_DATABASE`              | Database name. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
+| `DB_USER`                  | Database user. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                                      | --                            |
+| `DB_PASSWORD`              | Database user's password. **Required** when using `pg`, `mysql`, `oracledb`, or `mssql`.                                                           | --                            |
+| `DB_FILENAME`              | Where to read/write the SQLite database. **Required** when using `sqlite3`.                                                                        | --                            |
+| `DB_CONNECTION_STRING`     | When using `pg`, you can submit a connection string instead of individual properties. Using this will ignore any of the other connection settings. | --                            |
+| `DB_POOL__*`               | Pooling settings. Passed on to [the `tarn.js`](https://github.com/vincit/tarn.js#usage) library.                                                   | --                            |
+| `DB_EXCLUDE_TABLES`        | CSV of tables you want Directus to ignore completely                                                                                               | `spatial_ref_sys,sysdiagrams` |
+| `DB_CHARSET`               | Charset/collation to use in the connection to MySQL/MariaDB                                                                                        | `UTF8_GENERAL_CI`             |
+| `DB_VERSION`               | Database version, in case you use the PostgreSQL adapter to connect a non-standard database. Not normally required.                                | --                            |
+| `DB_HEALTHCHECK_THRESHOLD` | Healthcheck timeout threshold in ms.                                                                                                               | `150`                         |
 
 ::: tip Additional Database Variables
 
@@ -281,6 +282,7 @@ All the `DB_POOL__` prefixed options are passed to [`tarn.js`](https://github.co
 | `REFRESH_TOKEN_COOKIE_SECURE`    | Whether or not to use a secure cookie for the refresh token in cookie mode.                                                                                      | `false`                  |
 | `REFRESH_TOKEN_COOKIE_SAME_SITE` | Value for `sameSite` in the refresh token cookie when in cookie mode.                                                                                            | `lax`                    |
 | `REFRESH_TOKEN_COOKIE_NAME`      | Name of refresh token cookie .                                                                                                                                   | `directus_refresh_token` |
+| `LOGIN_STALL_TIME`               | The duration in milliseconds that a login request will be stalled for, and it should be greater than the time taken for a login request with an invalid password | `500`                    |
 | `PASSWORD_RESET_URL_ALLOW_LIST`  | List of URLs that can be used [as `reset_url` in /password/request](/reference/authentication#request-password-reset)                                            | --                       |
 | `USER_INVITE_URL_ALLOW_LIST`     | List of URLs that can be used [as `invite_url` in /users/invite](/reference/system/users#invite-a-new-user)                                                      | --                       |
 | `IP_TRUST_PROXY`                 | Settings for [express' trust proxy setting](https://expressjs.com/en/guide/behind-proxies.html)                                                                  | true                     |
@@ -307,8 +309,8 @@ your project and API on different domains, make sure to verify your configuratio
 | `HASH_LENGTH`          | The length of the hash function output in bytes.                                                                                 | `32`                |
 | `HASH_TIME_COST`       | The amount of passes (iterations) used by the hash function. It increases hash strength at the cost of time required to compute. | `3`                 |
 | `HASH_PARALLELISM`     | The amount of threads to compute the hash on. Each thread has a memory pool with `HASH_MEMORY_COST` size.                        | `1` (single thread) |
-| `HASH_TYPE`            | The variant of the hash function (`0`: argon2d, `1`: argon2i, or `2`: argon2id).                                                 | `1` (argon2i)       |
-| `HASH_ASSOCIATED_DATA` | An extra and optional non-secret value. The value will be included B64 encoded in the parameters portion of the digest.          | --                  |
+| `HASH_TYPE`            | The variant of the hash function (`0`: argon2d, `1`: argon2i, or `2`: argon2id).                                                 | `2` (argon2id)      |
+| `HASH_ASSOCIATED_DATA` | An extra and optional non-secret value. The value will be included Base64 encoded in the parameters portion of the digest.       | --                  |
 
 Argon2's hashing function is used by Directus for three purposes: 1) hashing user passwords, 2) generating hashes for
 the `Hash` field type in collections, and 3) the
@@ -341,15 +343,16 @@ multiplied. This may cause out of memory errors, especially when running in cont
 
 You can use the built-in rate-limiter to prevent users from hitting the API too much. Simply enabling the rate-limiter
 will set a default maximum of 50 requests per second, tracked in memory. Once you have multiple copies of Directus
-running under a load-balancer, or your user base grows so much that memory is no longer a viable place to store the rate
+running under a load balancer, or your user base grows so much that memory is no longer a viable place to store the rate
 limiter information, you can use an external `memcache` or `redis` instance to store the rate limiter data.
 
-| Variable                | Description                                                                      | Default Value |
-| ----------------------- | -------------------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_ENABLED`  | Whether or not to enable rate limiting on the API.                               | `false`       |
-| `RATE_LIMITER_POINTS`   | The amount of allowed hits per duration.                                         | `50`          |
-| `RATE_LIMITER_DURATION` | The time window in seconds in which the points are counted.                      | `1`           |
-| `RATE_LIMITER_STORE`    | Where to store the rate limiter counts. One of `memory`, `redis`, or `memcache`. | `memory`      |
+| Variable                             | Description                                                                      | Default Value |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_ENABLED`               | Whether or not to enable rate limiting on the API.                               | `false`       |
+| `RATE_LIMITER_POINTS`                | The amount of allowed hits per duration.                                         | `50`          |
+| `RATE_LIMITER_DURATION`              | The time window in seconds in which the points are counted.                      | `1`           |
+| `RATE_LIMITER_STORE`                 | Where to store the rate limiter counts. One of `memory`, `redis`, or `memcache`. | `memory`      |
+| `RATE_LIMITER_HEALTHCHECK_THRESHOLD` | Healthcheck timeout threshold in ms.                                             | `150`         |
 
 Based on the `RATE_LIMITER_STORE` used, you must also provide the following configurations:
 
@@ -359,9 +362,9 @@ No additional configuration required.
 
 ### Redis
 
-| Variable             | Description                                                           | Default Value |
-| -------------------- | --------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_REDIS` | Redis connection string, eg: `redis://:authpassword@127.0.0.1:6380/4` | ---           |
+| Variable             | Description                                                             | Default Value |
+| -------------------- | ----------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_REDIS` | Redis connection string, e.g., `redis://:authpassword@127.0.0.1:6380/4` | ---           |
 
 Alternatively, you can provide the individual connection parameters:
 
@@ -373,9 +376,9 @@ Alternatively, you can provide the individual connection parameters:
 
 ### Memcache
 
-| Variable                | Description                                                                                                                                                           | Default Value |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `RATE_LIMITER_MEMCACHE` | Location of your memcache instance. You can use [`array:` syntax](#environment-syntax-prefix), eg: `array:<instance-1>,<instance-2>` for multiple memcache instances. | ---           |
+| Variable                | Description                                                                                                                                                             | Default Value |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `RATE_LIMITER_MEMCACHE` | Location of your memcache instance. You can use [`array:` syntax](#environment-syntax-prefix), e.g., `array:<instance-1>,<instance-2>` for multiple memcache instances. | ---           |
 
 ::: tip Additional Rate Limiter Variables
 
@@ -445,6 +448,7 @@ than you would cache database content. To learn more, see [Assets](#assets).
 | `CACHE_STORE`<sup>[4]</sup>       | Where to store the cache data. Either `memory`, `redis`, or `memcache`.                                                 | `memory`         |
 | `CACHE_STATUS_HEADER`             | If set, returns the cache status in the configured header. One of `HIT`, `MISS`.                                        | --               |
 | `CACHE_VALUE_MAX_SIZE`            | Maximum size of values that will be cached. Accepts number of bytes, or human readable string. Use `false` for no limit | false            |
+| `CACHE_HEALTHCHECK_THRESHOLD`     | Healthcheck timeout threshold in ms.                                                                                    | `150`            |
 
 <sup>[1]</sup> `CACHE_TTL` Based on your project's needs, you might be able to aggressively cache your data, only
 requiring new data to be fetched every hour or so. This allows you to squeeze the most performance out of your Directus
@@ -467,9 +471,9 @@ No additional configuration required.
 
 ### Redis
 
-| Variable      | Description                                                           | Default Value |
-| ------------- | --------------------------------------------------------------------- | ------------- |
-| `CACHE_REDIS` | Redis connection string, eg: `redis://:authpassword@127.0.0.1:6380/4` | ---           |
+| Variable      | Description                                                             | Default Value |
+| ------------- | ----------------------------------------------------------------------- | ------------- |
+| `CACHE_REDIS` | Redis connection string, e.g., `redis://:authpassword@127.0.0.1:6380/4` | ---           |
 
 Alternatively, you can provide the individual connection parameters:
 
@@ -481,9 +485,9 @@ Alternatively, you can provide the individual connection parameters:
 
 ### Memcache
 
-| Variable         | Description                                                                                                                                                           | Default Value |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `CACHE_MEMCACHE` | Location of your memcache instance. You can use [`array:` syntax](#environment-syntax-prefix), eg: `array:<instance-1>,<instance-2>` for multiple memcache instances. | ---           |
+| Variable         | Description                                                                                                                                                             | Default Value |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `CACHE_MEMCACHE` | Location of your memcache instance. You can use [`array:` syntax](#environment-syntax-prefix), e.g., `array:<instance-1>,<instance-2>` for multiple memcache instances. | ---           |
 
 ## File Storage
 
@@ -523,16 +527,17 @@ STORAGE_S3_DRIVER="s3" # Will work, "s3" is uppercased ✅
 
 :::
 
-| Variable            | Description                                                                                                           | Default Value |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `STORAGE_LOCATIONS` | A CSV of storage locations (eg: `local,digitalocean,amazon`) to use. You can use any names you'd like for these keys. | `local`       |
+| Variable            | Description                                                                                                             | Default Value |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `STORAGE_LOCATIONS` | A CSV of storage locations (e.g., `local,digitalocean,amazon`) to use. You can use any names you'd like for these keys. | `local`       |
 
 For each of the storage locations listed, you must provide the following configuration:
 
-| Variable                    | Description                                               | Default Value |
-| --------------------------- | --------------------------------------------------------- | ------------- |
-| `STORAGE_<LOCATION>_DRIVER` | Which driver to use, either `local`, `s3`, `gcs`, `azure` |               |
-| `STORAGE_<LOCATION>_ROOT`   | Where to store the files on disk                          | `''`          |
+| Variable                                   | Description                                               | Default Value |
+| ------------------------------------------ | --------------------------------------------------------- | ------------- |
+| `STORAGE_<LOCATION>_DRIVER`                | Which driver to use, either `local`, `s3`, `gcs`, `azure` |               |
+| `STORAGE_<LOCATION>_ROOT`                  | Where to store the files on disk                          | `''`          |
+| `STORAGE_<LOCATION>_HEALTHCHECK_THRESHOLD` | Healthcheck timeout threshold in ms.                      | `750`         |
 
 Based on your configured driver, you must also provide the following configurations:
 
@@ -642,7 +647,7 @@ No additional configuration required.
 Directus' SSO integrations provide powerful alternative ways to authenticate into your project. Directus will ask you to
 login on the external service, and return authenticated with a Directus account linked to that service.
 
-For example, you can login to Directus using a github account by creating an
+For example, you can login to Directus using a GitHub account by creating an
 [OAuth 2.0 app in GitHub](https://github.com/settings/developers) and adding the following configuration to Directus:
 
 ```
@@ -788,21 +793,21 @@ AUTH_FACEBOOK_ICON="facebook"
 
 ## Messenger
 
-| Variable              | Description                                       | Default Value |
-| --------------------- | ------------------------------------------------- | ------------- |
-| `MESSENGER_STORE`     | One of `memory`, `redis`<sup>[1]</sup>            | `memory`      |
-| `MESSENGER_NAMESPACE` | How to scope the channels in Redis                | `directus`    |
-| `MESSENGER_REDIS_*`   | The Redis configuration for the pubsub connection | --            |
+| Variable              | Description                                        | Default Value |
+| --------------------- | -------------------------------------------------- | ------------- |
+| `MESSENGER_STORE`     | One of `memory`, `redis`<sup>[1]</sup>             | `memory`      |
+| `MESSENGER_NAMESPACE` | How to scope the channels in Redis                 | `directus`    |
+| `MESSENGER_REDIS_*`   | The Redis configuration for the pub/sub connection | --            |
 
 <sup>[1]</sup> `redis` should be used in load-balanced installations of Directus
 
 ## Email
 
-| Variable             | Description                                                              | Default Value          |
-| -------------------- | ------------------------------------------------------------------------ | ---------------------- |
-| `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                             | `true`                 |
-| `EMAIL_FROM`         | Email address from which emails are sent.                                | `no-reply@directus.io` |
-| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `ses`. | `sendmail`             |
+| Variable             | Description                                                                          | Default Value          |
+| -------------------- | ------------------------------------------------------------------------------------ | ---------------------- |
+| `EMAIL_VERIFY_SETUP` | Check if email setup is properly configured.                                         | `true`                 |
+| `EMAIL_FROM`         | Email address from which emails are sent.                                            | `no-reply@directus.io` |
+| `EMAIL_TRANSPORT`    | What to use to send emails. One of `sendmail`, `smtp`, `mailgun`, `sendgrid`, `ses`. | `sendmail`             |
 
 Based on the `EMAIL_TRANSPORT` used, you must also provide the following configurations:
 
@@ -817,6 +822,7 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide the following configu
 
 | Variable                | Description      | Default Value |
 | ----------------------- | ---------------- | ------------- |
+| `EMAIL_SMTP_NAME`       | SMTP Name        | --            |
 | `EMAIL_SMTP_HOST`       | SMTP Host        | --            |
 | `EMAIL_SMTP_PORT`       | SMTP Port        | --            |
 | `EMAIL_SMTP_USER`       | SMTP User        | --            |
@@ -832,6 +838,12 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide the following configu
 | `EMAIL_MAILGUN_API_KEY` | Your Mailgun API key.                                                             | --                |
 | `EMAIL_MAILGUN_DOMAIN`  | A domain from [your Mailgun account](https://app.mailgun.com/app/sending/domains) | --                |
 | `EMAIL_MAILGUN_HOST`    | Allows you to specify a custom host.                                              | `api.mailgun.net` |
+
+### SendGrid (`sendgrid`)
+
+| Variable                 | Description            | Default Value |
+| ------------------------ | ---------------------- | ------------- |
+| `EMAIL_SENDGRID_API_KEY` | Your SendGrid API key. | --            |
 
 ### AWS SES (`ses`)
 

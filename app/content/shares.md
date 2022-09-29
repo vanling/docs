@@ -17,8 +17,8 @@ configuration > users-roles-permissions
 
 ## What's a Share?
 
-In any Project, some Collections ay be accessible for only certain User roles, or hidden from the public. You may decide
-to share one of the Items within the collection with an individual or group of individuals who don't yet have
+In any Project, some Collections may be accessible for only certain User roles, or hidden from the public. You may
+decide to share one of the Items within the collection with an individual or group of individuals who don't yet have
 permission. In this case, use Shares. Shares let you give anybody access to an Item. When you create a Share on an Item,
 a Role for the Share to inherit view permissions is assigned. Then you can share the Item via a hyperlink or email. The
 link leads to a page containing the read-only content for just that shared Item.

@@ -19,9 +19,7 @@ pageClass: page-reference
 - [Deep](#deep)
 - [Aliases](#aliases)
 - [Export](#export)
-<p></p>
 - [Functions](#functions)
-<p></p>
 - [Metadata](#metadata)
   - [Total Count](#total-count)
   - [Filter Count](#filter-count)
@@ -60,8 +58,8 @@ Get all top-level and second-level relational fields, and third-level fields wit
 
 ### Many-To-Any (Union Types)
 
-Seeing that Many-to-Any (m2a) fields have nested data from multiple collections, it's not always safe / wanted to fetch
-the same field from every related collection. In m2a fields, you can use the following syntax to specify what fields to
+Seeing that Many-to-Any (M2A) fields have nested data from multiple collections, it's not always safe / wanted to fetch
+the same field from every related collection. In M2A fields, you can use the following syntax to specify what fields to
 fetch from which related nested collection type:\
 `?fields=<m2a-field>:<collection-scope>.<field>`.
 

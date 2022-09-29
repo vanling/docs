@@ -1,5 +1,5 @@
 ---
-description: A guide on how to scaffhold your Directus Extension.
+description: A guide on how to scaffold your Directus Extension.
 readTime: 5 min read
 ---
 
@@ -18,7 +18,7 @@ utility will create a folder with the recommended file structure to create an ex
 
 ### Extension Folder Structure
 
-The folder created by the utility is in fact a npm package. It comes with a few pre-installed packages depending on the
+The folder created by the utility is in fact an npm package. It comes with a few pre-installed packages depending on the
 extension type and the language you chose. The most important one is `@directus/extensions-sdk`. This package includes a
 CLI, which allows you to build your extension and to scaffold additional extensions, and it provides Typescript helpers
 and other utilities.

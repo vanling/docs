@@ -37,7 +37,7 @@ This optional filename is also used in the Content-Disposition header when the `
 
 ::: warning Direct File Access
 
-While you may _technically_ be able to expose your storage adapters root filesystem and access your raw files through
+While you may _technically_ be able to expose your storage adapters root file system and access your raw files through
 there, it is recommended that you always use the Directus API. This is the only way that you can take advantage of file
 permissions and other built-in features.
 
@@ -115,11 +115,11 @@ Images are never stretched or distorted even when changing the aspect ratio.
 
 ::: -->
 
-### Quality vs Filesize
+### Quality vs File Size
 
-The quality parameter can be any integer from `0-100`. Qualities closer to `0` have lower filesizes, but also poor image
-quality due to compression artifacts. Values closer to `100` have larger filesizes, but better image quality. Below are
-four possible qualities (200x200 cover) to visually compare the balance between compression and filesize.
+The quality parameter can be any integer from `0-100`. Qualities closer to `0` have lower file sizes, but also poor
+image quality due to compression artifacts. Values closer to `100` have larger file sizes, but better image quality.
+Below are four possible qualities (200x200 cover) to visually compare the balance between compression and file size.
 
 | 25%                                                                                             | 50%                                                                                             | 75%                                                                                             | 100%                                                                                               |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |

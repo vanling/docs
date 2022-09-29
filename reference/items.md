@@ -13,8 +13,8 @@ pageClass: page-reference
 
 ## The Item Object
 
-Items don't have a pre-defined schema. The format depends completely on how you configured your collections and fields
-in Directus. For the sake of documentation, we'll use a fictional articles collection with the following fields: `id`,
+Items don't have a predefined schema. The format depends completely on how you configured your collections and fields in
+Directus. For the sake of documentation, we'll use a fictional articles collection with the following fields: `id`,
 `status`, `title`, `body`, `featured_image`, and `author`.
 
 ::: tip Relational Data

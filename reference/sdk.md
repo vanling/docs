@@ -272,7 +272,7 @@ await directus.auth.static('static_token');
 
 ### Refresh Auth Token
 
-By default, Directus will handle token refreshes. Although, you can handle this behaviour manually by setting
+By default, Directus will handle token refreshes. Although, you can handle this behavior manually by setting
 [`autoRefresh`](#options.auth.autoRefresh) to `false`.
 
 ```js
@@ -420,6 +420,13 @@ again.
 
 If you want to use multiple instances of the SDK you should set a different [`prefix`](#options.storage.prefix) for each
 one.
+
+::: tip
+
+The axios instance can be used for custom requests by calling
+`await directus.transport.<method>('/path/to/endpoint', { /* body, params, ... */ })`
+
+:::
 
 ## Items
 

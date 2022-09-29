@@ -10,7 +10,7 @@ readTime: 15 min read
 
 ## Admin / Administrator
 
-An "Administrators" Role (with Admin access enabled) is included when you first install the platform. All admin roles
+An "Administrator" Role (with Admin access enabled) is included when you first install the platform. All admin roles
 bypass the permissions check, providing unrestricted access to all data within the App and API. Additionally, only roles
 with the admin option enabled can manage Settings within the app.
 
@@ -45,10 +45,10 @@ table names as human-readable collection titles. There are also "folder" collect
 themselves.
 
 Collections can be organized in any way that is appropriate for your project. You can architect them platform-specific
-(eg: _pages_ of a website), or in a more platform-agnostic way (eg: raw _customers_ of your business). While there's no
-right or wrong way to structure your data-model, we recommend keeping your data as agnostic as possible so it is easier
-to repurpose in the future. **In short, learn to see your data as its own asset — not only through the lens of your
-immediate project needs**.
+(e.g., _pages_ of a website), or in a more platform-agnostic way (e.g., raw _customers_ of your business). While there's
+no right or wrong way to structure your data-model, we recommend keeping your data as agnostic as possible so it is
+easier to repurpose in the future. **In short, learn to see your data as its own asset — not only through the lens of
+your immediate project needs**.
 
 The only requirement of a collection is that it must contain a [Primary Key](#primary-key-pk) field. This field stores a
 unique value that is used to reference the Collection's items throughout the database/platform.
@@ -68,8 +68,9 @@ group data based on department, objective, business process or anything you choo
 ## Database Abstraction
 
 Directus supports mirroring all the most widely used SQL databases, including PostgreSQL, MySQL, Microsoft SQL Server,
-SQLite, OracleDB, MariaDB, and other variants. Each vendor has subtle (and sometimes not so subtle) differences in how
-they function, so Directus includes an abstraction layer that helps it avoid writing different code for each type.
+SQLite, OracleDB, MariaDB, CockroachDB, and other variants. Each vendor has subtle (and sometimes not so subtle)
+differences in how they function, so Directus includes an abstraction layer that helps it avoid writing different code
+for each type.
 
 This means there is also the possibility of supporting other datastores in the future, such as NoSQL options like
 MongoDB, or even third-party data services like Firebase or Heroku. However these options are _fundamentally_ different
@@ -105,7 +106,7 @@ formatting styles, or anything else.
 
 ## Environments
 
-Environments (eg: dev, staging, prod) are tracked as separate Project instances. You can then use schema/content
+Environments (e.g., dev, staging, prod) are tracked as separate Project instances. You can then use schema/content
 migrations to promote data between them.
 
 ## Extensions
@@ -224,8 +225,8 @@ App can be bucketed into one of the following modules:
 - [Settings](/app/settings) — An admin-only section for configuring the project and system settings
 
 In addition to these core modules, custom modules offer a _blank canvas_ for creating altogether new/different
-experiences within the App, such as proprietary dashboards, compound datasets, or third-party integrations (eg: a Stripe
-Payments Console).
+experiences within the App, such as proprietary dashboards, compound datasets, or third-party integrations (e.g., a
+Stripe Payments Console).
 
 ### Relevant Guides
 
@@ -233,7 +234,7 @@ Payments Console).
 
 ## Multitenancy
 
-Multitenancy is an architecture that allows multiple tenants (eg: customers) to be managed by the platform. There are
+Multitenancy is an architecture that allows multiple tenants (e.g., customers) to be managed by the platform. There are
 two main ways to achieve multitenancy:
 
 - **Project Scoping** — Creating a super-admin layer that provisions new tenant projects has been made easier by the
@@ -321,23 +322,29 @@ There is also a "Public" role that determines access for unauthenticated access.
 - [Configuring System Permissions](/configuration/users-roles-permissions#configure-system-permissions)
 - [Deleting a Role](/configuration/users-roles-permissions#deleting-a-role)
 
+## Singleton
+
+- **Directus** - A collection that only contains one single item
+- [**Design pattern**](https://www.patterns.dev/posts/singleton-pattern/) - Classes which can be instantiated once and
+  can be accessed globally. This single instance can be shared throughout our application, which makes singletons great
+  for managing global state in an application.
+
 ## Storage Adapters
 
 Storage adapters allow project files to be stored in different locations or services. By default, Directus includes the
 following drivers:
 
-- **Local Filesystem** — The default, any filesystem location or network-attached storage
+- **Local Filesystem** — The default, any file system location or network-attached storage
 - **S3 or Equivalent** — Including AWS S3, DigitalOcean Spaces, Alibaba OSS, and others
 - **Google Cloud Storage** — A RESTful web service on the Google Cloud Platform
 - **Azure Blob Storage** — Azure storage account containers
 
 ## Title Formatter
 
-Special Casing — If you are trying to update the specific casing (uppercase/lowercase) for a word (eg: `Dna` to `DNA`)
-you will want to add the edge-case to the
-[Format Title package](https://github.com/directus/directus/tree/main/packages/format-title/src). If you feel the case
-passes our [80/20 rule](https://docs.directus.io/contributing/introduction#feature-requests) you should submit a Pull
-Request to the codebase, otherwise you can update this in your instance.
+Special Casing — If you are trying to update the specific casing (uppercase/lowercase) for a word (e.g., `Dna` to `DNA`)
+you will want to add the edge-case to the [Format Title package](https://github.com/directus/format-title). If you feel
+the case passes our [80/20 rule](https://docs.directus.io/contributing/introduction#feature-requests) you should submit
+a Pull Request to the codebase, otherwise you can update this in your instance.
 
 ## Translations
 
@@ -361,7 +368,7 @@ cause data loss, so types are locked within the platform after a field is create
 ### Data Type Superset
 
 Directus uses its built-in database abstraction to properly support all the different SQL vendors. However, these
-vendors do not share support for the same datatypes, instead, each SQL vendor maintains their own list. To standardize
+vendors do not share support for the same data types, instead, each SQL vendor maintains their own list. To standardize
 all of these differences, Directus has a single _superset_ of types that map to the vendor-specific ones.
 
 - **String** — A shorter set of characters with a configurable max length

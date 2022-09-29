@@ -86,8 +86,8 @@ export default {
 </script>
 ```
 
-In addition to some pre-defined props, the component receives the state defined inside the `setup()` function as
-individual props. Besides some pre-defined emits, the component also provides emits for every property returned by the
+In addition to some predefined props, the component receives the state defined inside the `setup()` function as
+individual props. Besides some predefined emits, the component also provides emits for every property returned by the
 `setup()` function. Those emits are prefixed by `update:`.
 
 These props and emits are available in all components associated with your layout.
@@ -97,7 +97,7 @@ These props and emits are available in all components associated with your layou
 - `collection` — The current collection's name.
 - `selection` — Any currently selected items.
 - `layoutOptions` — The user's currently saved layout options.
-- `layoutQuery` — The user's layout query parameters. (eg: sort, limit, etc)
+- `layoutQuery` — The user's layout query parameters. (e.g., sort, limit, etc)
 - `filter` — The combined active filter.
 - `filterUser` — The user's currently active filter.
 - `filterSystem` — The system's currently active filter.

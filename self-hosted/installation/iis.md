@@ -1,5 +1,5 @@
 ---
-description: How to host Directus on iis.
+description: How to host Directus on IIS
 readTime: 2 min read
 ---
 
@@ -16,6 +16,21 @@ iisnode can be downloaded from the [azure/iisnode releases](https://github.com/A
 
 The URL Rewrite module can be downloaded from the
 [Microsoft IIS website](https://www.iis.net/downloads/microsoft/url-rewrite).
+
+## Environment variables
+
+The `PORT` entry needs to be removed or disabled in the `.env` file to get Directus working on IIS.
+
+```
+# The port Directus will run on [8055]
+# PORT=8055
+```
+
+The `PUBLIC_URL` entry must match the site binding in IIS. Port number is optional.
+
+```
+PUBLIC_URL="https://cms.yourdomain.com/"
+```
 
 ## Entrypoint
 

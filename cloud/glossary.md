@@ -207,7 +207,7 @@ secure and safe [tenancy architectures](#multi-tenancy).
 
 :::tip Directus Core Security Features
 
-Directus core comes with even more security features out-of-the-box, including IP address whitelabeling, 2FA enabling,
+Directus core comes with even more security features out-of-the-box, including IP address whitelabeling, MFA enabling,
 SSO options, customization for Password Rule requirements and the flexibility to use any access token paradigm desired.
 
 :::
@@ -316,8 +316,28 @@ see [Cloud Policies](https://directus.io/cloud-policies)
 
 ## Rate Limiting
 
-Rate limiting refers to technical limitations within Directus Cloud as well as Cloud Projects.\
-For details, see [Cloud Policies](https://directus.io/cloud-policies#)
+Rate limiting refers to technical limitations within Directus Cloud as well as Cloud Projects. You will encounter the
+following API request limits at each node tier.
+
+| Tier                       | Limit                                               |
+| -------------------------- | --------------------------------------------------- |
+| Community                  | 10 requests per second per IP _(50 per second max)_ |
+| Standard (General Purpose) | 25 requests per second per node per IP              |
+| Standard (Performance)     | 50 requests per second per node per IP              |
+| Enterprise                 | 100 requests per second per node per IP             |
+
+:::tip
+
+These limits are additive and load balanced. For example, a Standard Project with two Performance nodes would get 100
+requests per second per IP `50 requests * 2 nodes = 100`.
+
+:::
+
+:::tip Learn More
+
+For details on other limitations, please see [Cloud Policies](https://directus.io/cloud-policies/#)
+
+:::
 
 ## Support Options
 

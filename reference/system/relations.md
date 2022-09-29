@@ -54,7 +54,7 @@ Whether to nullify or delete related one-to-many records.
 What field is used to hold the sort field.
 
 `junction_field` **string**\
-What field connects two relations in a many-to-many (o2m-m2o) context.
+What field connects two relations in a many-to-many (O2M-M2O) context.
 
 #### Schema
 

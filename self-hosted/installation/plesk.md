@@ -1,5 +1,5 @@
 ---
-description: How to host Directus on Plesk.
+description: How to host Directus on Plesk
 readTime: 4 min read
 ---
 
@@ -89,12 +89,12 @@ scripts-prepend-node-path=true
 
 Lastly, we need to add a `document_root` folder inside our project-directory.
 
-It's required by plesk that the document root must be a subdirectory of the application root directory. The folder can
+It's required by Plesk that the document root must be a subdirectory of the application root directory. The folder can
 stay empty.
 
 ::: tip Store `document_root` in a version control
 
-If you want to keep the folder in in a version control like git, create a empty `.gitignore` file inside the folder.
+To maintain the folder with version control (e.g., git), be sure to create an empty `.gitignore` file inside the folder.
 
 :::
 
@@ -143,7 +143,7 @@ of seconds.
 
 ## Using snapshots
 
-On Plesk you can't directly run an npx command. To use the Directus snapshot feature, you'd need to add a script to your
+On Plesk you can't directly run a npx command. To use the Directus snapshot feature, you'd need to add a script to your
 `package.json`. For snapshot creation you can find an example in the
 [CLI docs: Date-based snapshots](/self-hosted/installation/plesk#snapshot-the-data-model)
 
@@ -157,7 +157,7 @@ To apply a snapshot you need a custom wrapper using the non-interactive version:
 
 ```
 
-After that you can apply a snapshot by entering the following command to plesk:
+After that you can apply a snapshot by entering the following command to Plesk:
 
 ```sh
 apply-snapshot--noninteractive --filename=[file.yaml]

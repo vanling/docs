@@ -1,5 +1,5 @@
 ---
-description: How to install Directus via CLI.
+description: How to install Directus via CLI
 readTime: 2 min read
 ---
 

@@ -28,8 +28,8 @@ All of a Team's Projects are listed on the Projects Page. For each Project, the 
 provided. On Project creation, the provisioning progress will be displayed until fully complete. The icon on the far
 left indicates whether it's online, [offline](/cloud/glossary#system-status) or [paused](#resume-a-community-project).
 Next to that icon are the Project Name and Project Slug. On the right, you'll see the Project tier, followed by
-shortcuts, which allow you to <span mi icon>edit</span> edit and <span mi icon>launch</span> access the Project. To view
-a Team's Projects:
+shortcuts, which allow you to <span mi icon>edit</span> update and <span mi icon>launch</span> access the Project. To
+view a Team's Projects:
 
 1. Open the Team Menu in the Dashboard Header and select the desired Team.
 2. Click **"Projects"**.
@@ -159,7 +159,7 @@ may help inform your decisions around configuring Nodes.
   Total load placed on all Nodes. If CPU or memory are overloaded, the Node could crash! High usage is a sign that it's time
   to scale up.
 - **Horizontal Scaling**\
-  Number of Standby Nodes activated. If one or more Standy Nodes are frequently activated, it may be time to add more Active
+  Number of Standby Nodes activated. If one or more Standby Nodes are frequently activated, it may be time to add more Active
   Nodes.
 - **API Requests**\
   Number of API requests. This provides basic insight into traffic cycles, including overall volatility. If there are huge

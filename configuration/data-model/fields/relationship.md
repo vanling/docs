@@ -147,6 +147,6 @@ item and language.
 
 Lastly, you would select/create the Languages collection, which stores the languages available for this translations
 field. It is common practice to reuse a single languages collection throughout your project, unless translation fields
-need to support different language sets. For the language `code` we recommend using the IETF language tag (eg: `en-US`)
-which combines the ISO 639-1 and ISO 3166‑1 standards, but anything can be used (eg: `english`).
+need to support different language sets. For the language `code` we recommend using the IETF language tag (e.g., `en-US`)
+which combines the ISO 639-1 and ISO 3166‑1 standards, but anything can be used (e.g., `english`).
 -->

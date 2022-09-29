@@ -9,7 +9,7 @@ While there are many different ways to run Directus on AWS, from single EC2 inst
 configuration, we like the following combination of services:
 
 - Elastic Beanstalk (EB)
-  - Elastic Load-Balancer (ELB)
+  - Elastic Load Balancer (ELB)
   - Elastic Compute Cloud (EC2)
 - CodeDeploy
 - Simple Storage Service (S3)

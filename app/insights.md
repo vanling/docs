@@ -5,7 +5,7 @@ readTime: 9 min read
 
 # Insights
 
-> Insights is a Module in Directus that allows rapid, no-code buildout of analytics dashboards. Regardless of your
+> Insights is a Module in Directus that allows rapid, no-code build-out of analytics dashboards. Regardless of your
 > use-case _(be it business intelligence, user progress tracking, web traffic conversions, or whatever!)_ you will be
 > able to setup key data metrics in just a few clicks.
 
@@ -153,7 +153,7 @@ grayed out and unselectable in the `field dropdown list`.
 
 ### Style and Format Options
 
-- **Abbreviate Value** – Abbreviates large numbers with a letter _(e.g. 2,000 = 2k)_.
+- **Abbreviate Value** – Abbreviates large numbers with a letter _(e.g. 2,000 = 2K)_.
 - **Decimals** – Changes the number of decimals displayed.
 - **Prefix** – Adds text before the aggregate metric.
 - **Suffix** – Adds text after the aggregate metric.

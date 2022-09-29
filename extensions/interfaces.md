@@ -40,7 +40,7 @@ export default {
 - `component` — A reference to your interface component.
 - `options` — The options of your interface. Can be either an options object or a dedicated Vue component.
 - `types` — An array of supported [types](/getting-started/glossary#types).
-- `groups` — An array of field-groups. Accepts `standard`, `file`, `files`, `m2o`, `o2m`, `m2a`, `translations`.
+- `groups` — An array of field-groups. Accepts `standard`, `file`, `files`, `M2O`, `O2M`, `M2A`, `translations`.
   Defaults to `standard`.
 - `relational` — A boolean that indicates if this interface is a relational interface.
 - `recommendedDisplays` — An array of display names which are recommended to be used with this interface.
