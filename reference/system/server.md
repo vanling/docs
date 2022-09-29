@@ -580,7 +580,7 @@ n/a
 
 Compares and retrieve the difference of the current schema vs the schema in JSON request body.
 
-Alternatively, upload a JSON or CSV schema file. Relies on a `multipart/form-data` encoded request like regular file
+Alternatively, upload a JSON or YAML schema file. Relies on a `multipart/form-data` encoded request like regular file
 uploads. Check [Upload a File](/reference/files#upload-a-file) for more information.
 
 ### Query Parameters
@@ -593,7 +593,7 @@ JSON object containing [collections](/reference/system/collections#the-collectio
 [fields](/reference/system/fields#the-field-object), and [relations](/reference/system/relations#the-relation-object) to
 apply.
 
-Alternatively, send a JSON or CSV schema file in a `multipart/form-data` request. See
+Alternatively, send a JSON or YAML schema file in a `multipart/form-data` request. See
 [Upload a File](/reference/files#upload-a-file) for more information.
 
 ### Returns
