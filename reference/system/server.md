@@ -385,9 +385,9 @@ n/a
 
 ---
 
-## Apply Schema
+## Apply Schema Difference
 
-Apply schema diff based on JSON request body. This endpoint is only available to admin users.
+Apply schema difference based on JSON request body. This endpoint is only available to admin users.
 
 ### Query Parameters
 
