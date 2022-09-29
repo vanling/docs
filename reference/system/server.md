@@ -387,10 +387,7 @@ n/a
 
 ## Apply Schema
 
-Apply schema snapshot based on JSON request body.
-
-Alternatively, upload a JSON or CSV schema file. Relies on a `multipart/form-data` encoded request like regular file
-uploads. Check [Upload a File](/reference/files#upload-a-file) for more information.
+Apply schema diff based on JSON request body.
 
 ### Query Parameters
 
@@ -398,12 +395,17 @@ This endpoint doesn't currently support any query parameters.
 
 ### Request Body
 
-JSON object containing [collections](/reference/system/collections#the-collection-object),
+JSON object containing hash and diffs of [collections](/reference/system/collections#the-collection-object),
 [fields](/reference/system/fields#the-field-object), and [relations](/reference/system/relations#the-relation-object) to
 apply.
 
-Alternatively, send a JSON or CSV schema file in a `multipart/form-data` request. See
-[Upload a File](/reference/files#upload-a-file) for more information.
+::: tip Hashes
+
+The hash is based on the target instance's schema and version. It is used to safeguard against changes that may happen
+after the current diff was generated which can potentially incur unexpected side effects when applying the diffs without
+this safeguard. Each diffs will also contain a hash, except for diffs of kind "N" (create).
+
+:::
 
 ### Returns
 
@@ -420,126 +422,152 @@ POST /server/schema/apply
 ```
 POST /server/schema/apply
 
-Content-Type: multipart/form-data; charset=utf-8; boundary=__X_BOUNDARY__
-Content-Length: 3442422
-
---__X_BOUNDARY__
-Content-Disposition: form-data; name="file"; filename="schema.yaml"
-Content-Type: text/yaml
-
-version: 1
-directus: 9.14.0
-collections:
-  - collection: articles
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      collapse: open
-      collection: articles
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: null
-      item_duplication_fields: null
-      note: null
-      singleton: false
-      sort: null
-      sort_field: null
-      translations: null
-      unarchive_value: null
-    schema:
-      comment: null
-      name: articles
-      schema: public
-fields:
-  - collection: articles
-    field: id
-    meta:
-      collection: articles
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      comment: null
-      data_type: integer
-      default_value: nextval('articles_id_seq'::regclass)
-      foreign_key_column: null
-      foreign_key_schema: null
-      foreign_key_table: null
-      generation_expression: null
-      has_auto_increment: true
-      is_generated: false
-      is_nullable: false
-      is_primary_key: true
-      is_unique: true
-      max_length: null
-      name: id
-      numeric_precision: 32
-      numeric_scale: 0
-      schema: public
-      table: articles
-    type: integer
-  - collection: articles
-    field: title
-    meta:
-      collection: articles
-      conditions: null
-      display: null
-      display_options: null
-      field: title
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      comment: null
-      data_type: character varying
-      default_value: null
-      foreign_key_column: null
-      foreign_key_schema: null
-      foreign_key_table: null
-      generation_expression: null
-      has_auto_increment: false
-      is_generated: false
-      is_nullable: true
-      is_primary_key: false
-      is_unique: false
-      max_length: 255
-      name: title
-      numeric_precision: null
-      numeric_scale: null
-      schema: public
-      table: articles
-    type: string
-relations: []
-
-...
+{
+    "hash": "327374bd",
+    "diff": {
+      "collections": [
+        {
+          "collection": "test",
+          "diff": [
+            {
+              "kind": "N",
+              "rhs": {
+                "collection": "test",
+                "meta": {
+                  "accountability": "all",
+                  "archive_app_filter": true,
+                  "archive_field": null,
+                  "archive_value": null,
+                  "collapse": "open",
+                  "collection": "test",
+                  "color": null,
+                  "display_template": null,
+                  "group": null,
+                  "hidden": false,
+                  "icon": null,
+                  "item_duplication_fields": null,
+                  "note": null,
+                  "singleton": false,
+                  "sort": null,
+                  "sort_field": null,
+                  "translations": null,
+                  "unarchive_value": null
+                },
+                "schema": {
+                  "name": "test"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "collection": "test",
+          "field": "id",
+          "diff": [
+            {
+              "kind": "N",
+              "rhs": {
+                "collection": "test",
+                "field": "id",
+                "meta": {
+                  "collection": "test",
+                  "conditions": null,
+                  "display": null,
+                  "display_options": null,
+                  "field": "id",
+                  "group": null,
+                  "hidden": true,
+                  "interface": "input",
+                  "note": null,
+                  "options": null,
+                  "readonly": true,
+                  "required": false,
+                  "sort": null,
+                  "special": null,
+                  "translations": null,
+                  "validation": null,
+                  "validation_message": null,
+                  "width": "full"
+                },
+                "schema": {
+                  "data_type": "integer",
+                  "default_value": "nextval('test_id_seq'::regclass)",
+                  "foreign_key_column": null,
+                  "foreign_key_table": null,
+                  "generation_expression": null,
+                  "has_auto_increment": true,
+                  "is_generated": false,
+                  "is_nullable": false,
+                  "is_primary_key": true,
+                  "is_unique": true,
+                  "max_length": null,
+                  "name": "id",
+                  "numeric_precision": 32,
+                  "numeric_scale": 0,
+                  "table": "test"
+                },
+                "type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "collection": "test",
+          "field": "title",
+          "diff": [
+            {
+              "kind": "N",
+              "rhs": {
+                "collection": "test",
+                "field": "title",
+                "meta": {
+                  "collection": "test",
+                  "conditions": null,
+                  "display": null,
+                  "display_options": null,
+                  "field": "title",
+                  "group": null,
+                  "hidden": false,
+                  "interface": "input",
+                  "note": null,
+                  "options": null,
+                  "readonly": false,
+                  "required": false,
+                  "sort": null,
+                  "special": null,
+                  "translations": null,
+                  "validation": null,
+                  "validation_message": null,
+                  "width": "full"
+                },
+                "schema": {
+                  "data_type": "character varying",
+                  "default_value": null,
+                  "foreign_key_column": null,
+                  "foreign_key_table": null,
+                  "generation_expression": null,
+                  "has_auto_increment": false,
+                  "is_generated": false,
+                  "is_nullable": true,
+                  "is_primary_key": false,
+                  "is_unique": false,
+                  "max_length": 255,
+                  "name": "title",
+                  "numeric_precision": null,
+                  "numeric_scale": null,
+                  "table": "test"
+                },
+                "type": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "relations": []
+    }
+  }
 ```
 
 ### GraphQL
