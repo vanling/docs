@@ -584,9 +584,16 @@ available to admin users.
 Alternatively, upload a JSON or YAML schema file. Relies on a `multipart/form-data` encoded request like regular file
 uploads. Check [Upload a File](/reference/files#upload-a-file) for more information.
 
+::: warn Different versions and vendors
+
+This endpoint does not allow different versions and database vendors by default. This is to avoid any unintentional
+diffs from being generated. You can opt in to bypass these checks by passing the `force` query parameter.
+
+:::
+
 ### Query Parameters
 
-This endpoint doesn't currently support any query parameters.
+Supports a `force` query parameter.
 
 ### Request Body
 
