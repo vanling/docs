@@ -352,7 +352,7 @@ query {
 
 ## Retrieve Schema Snapshot
 
-Retrieve the current schema.
+Retrieve the current schema. This endpoint is only available to admin users.
 
 ### Query Parameters
 
@@ -387,7 +387,7 @@ n/a
 
 ## Apply Schema
 
-Apply schema diff based on JSON request body.
+Apply schema diff based on JSON request body. This endpoint is only available to admin users.
 
 ### Query Parameters
 
@@ -578,7 +578,8 @@ n/a
 
 ## Retrieve Schema Difference
 
-Compares and retrieve the difference of the current schema vs the schema in JSON request body.
+Compares and retrieve the difference of the current schema vs the schema in JSON request body. This endpoint is only
+available to admin users.
 
 Alternatively, upload a JSON or YAML schema file. Relies on a `multipart/form-data` encoded request like regular file
 uploads. Check [Upload a File](/reference/files#upload-a-file) for more information.
