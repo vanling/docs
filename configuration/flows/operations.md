@@ -14,7 +14,9 @@ readTime: 5 min read
 
 :::tip Before You Begin
 
-Please be sure to read the documentation on [Flows](/configuration/flows) and [Triggers](/configuration/flows/triggers).
+On this page, we'll explain what each operation does, the kind of value it appends to the Flow Object, how to make use
+of its configuration options, as well as any well as other relevant tips. We will assume you have read the documentation
+on [Flows](/configuration/flows) and [Triggers](/configuration/flows/triggers).
 
 :::
 
@@ -41,8 +43,7 @@ have the Flow Object, and `details`, which will provide information to help iden
 Run Script lets you add a custom script to your flow using vanilla JavaScript or TypeScript.
 
 The operation provides a default function template. Its _optional_ `data` parameter takes in the existing Flow Object as
-an argument. The function's returned value is appended under the Run Script operation key. This means you can access a
-value from a preceding operation, run simple a script, then append the new value onto the Flow Object.
+an argument. The function's returned value is appended under the Run Script operation key.
 
 For example, let's say you have this function in a script operation, named `myScript`.
 
@@ -82,8 +83,8 @@ The returned value will be appended under the `myScript` operation key.
 :::tip
 
 We just showed you how to pass the Flow Object into a Run Script operation, run a simple calculation on its data, and
-append the new data back onto the Flow Object. But remember, it's your function and you're not obligated to take all
-three steps. Use it as you see fit.
+append the new data back onto the Flow Object. But remember, it's your function and you can use it as se fit! You're not
+required to input `data` or return a value.
 
 :::
 
@@ -230,16 +231,18 @@ on the Flow Object.
 
 ![Send Email](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/send-email-20220603A.webp)
 
-This operation sends an email. Flow Object keys can be used as variables, which means you can use an array of emails
-from a previous step in Flows.
+This operation sends off email(s). Flow Object keys can be used as variables, which means you can use an array of emails
+from a previous step in Flows, or dynamically read stored data into the subject or body of the email.
+
+If the operation executes successfully, a `null` value will be appended onto its operation key.
 
 - **To** — Set the email addresses. Hit `↵` to save the email. Click an email to remove it.
 - **Subject** — Set the subject line.
-- **Body** — Use a WYSIWYG editor to create the email body.
+- **Body** — Use a Markdown or WYSIWYG editor to create the email body.
 
 :::tip
 
-If you are testing out this Operation locally from `localhost:8080`, be sure to check your spam box, as your email
+If you are testing out this Operation locally from `localhost:8080`, be sure to check your spam box, because your email
 provider may send it there automatically.
 
 :::
@@ -248,7 +251,10 @@ provider may send it there automatically.
 
 ![Send Notification](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/send-notification-20220603A.webp)
 
-This Operation sends a notification to an app user.
+This operation sends a notification to an app user. Flow Object keys can be used as variables, which means you can use
+an array of user IDs from a previous step in Flows, or dynamically read stored data into the notifications.
+
+If the operation executes successfully, a `null` value is appended onto its operation key.
 
 - **Users** — Define a User by their primary key UUID. Use [Flow keys](/configuration/flows#the-flow-object) to set this
   dynamically.
@@ -260,7 +266,7 @@ This Operation sends a notification to an app user.
 
 ![Webhook / Request URL](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/webhook-20220603A.webp)
 
-This Operation makes a request to another URL.
+This operation makes a request to another URL.
 
 - **Method** — Choose to make a GET, POST, PATCH, DELETE, or other type of request.
 - **URL** — Define the URL to send the request to.
@@ -271,8 +277,9 @@ This Operation makes a request to another URL.
 
 ![Sleep](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/sleep-20220603A.webp)
 
-This Operation pauses Operation Execution on the Flow for a given amount of milliseconds, then continues to the next
-Operation.
+This operation creates a delay in the Flow for a given amount of milliseconds, then continues to the next operation.
+
+If the operation executes successfully, a `null` value is appended onto its operation key.
 
 - **Milliseconds** — Define the number of milliseconds the Operation will pause.
 

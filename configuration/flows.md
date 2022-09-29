@@ -30,6 +30,7 @@ Make this more narrative.
 One-liner description. A flow is a trigger, followed by a tree operations.
 With a Flows Object.
 Control Flow: Success and Failure of operations create a tree.
+Operations > options
 -->
 
 ![What's a Flow?](https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/whats-a-flow-20220603A.webp)
