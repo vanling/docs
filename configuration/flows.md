@@ -25,31 +25,43 @@ There is also dedicated API documentation on [Flows](/reference/system/flows) an
 
 ## What's a Flow?
 
-<!--
-Make this more narrative.
-One-liner description. A flow is a trigger, followed by a tree operations.
-With a Flows Object.
-Control Flow: Success and Failure of operations create a tree.
-Operations > options
--->
-
 ![What's a Flow?](https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/whats-a-flow-20220603A.webp)
 
-Each Flow begins with one Trigger, which defines the action that starts the Flow. Triggers can be an event or action
-within the app, an incoming webhook, a cron job, or a manual click of a button. Please see the documentation on
-[Triggers](/configuration/flows/triggers) for more details.
+Each flow is made up of three elements: A trigger, the operations, and the Flow Object.
 
-Operations are the actions performed after the Trigger, such as accessing and managing a Collection's items, sending off
-emails, pushing _in-app_ notifications, or sending webhooks, just to name a few. You can even set up divergent chains of
-Flow Operations, which execute conditionally, based on whether the previous Operation passed or failed. A
-[console log](/configuration/flows/operations#log-to-console) is also included to help design and troubleshoot your
-Flows and ensure data is passed on as intended. Please see the documentation on
-[Operations](/configuration/flows/operations) for more details.
+Each Flow begins with a [Trigger](/configuration/flows/triggers), which defines the action or event that starts the
+Flow. This action or event could be some type of transaction within the app, an incoming webhook, a cron job, etc.
 
-Once a Flow begins, Directus creates a [Flow Object](#the-flow-object). This stores any data generated from the Trigger
-event. When an Operation in the flow executes successfully, its data is appended onto the Flow Object. Every Operation
-has access to the entire Flow Object. In other words, each Operation has access to the data from the Flow's Trigger as
-well all previously executed Operations in the Flow.
+[Operations](/configuration/flows/operations) are the actions performed within the flow. These enable you to create,
+read, update, or delete data, send off emails, push _in-app_ notifications, send webhooks, write your own custom scripts
+using JavaScript/TypeScript, _and beyond_.
+
+In general, operations basically do three things:
+
+- Fetch data (from Directus or an outside service).
+- Process data (transform it, validate it, or whatever).
+- Send data (to Directus or an outside service).
+
+To track and access data, each flow creates its own [Flow Object](#the-flow-object). This is a JSON object that stores
+data generated from the Trigger as well as each operation that executes in the flow. All generated data is appended onto
+the Flow Object. Every Operation has access to the Flow Object. Therefore, you can chain multiple operations together to
+do create compound, complex, conditional task automation and data processing.
+
+Not every operation that executes in a flow does so successfully. In some cases, your operations are going to fail.
+Perhaps an operation tried to access data that doesn't exist, or a webhook operation fails for some reason, or perhaps
+you set a [Condition Operation](/configuration/flows/operations.md#condition) which fails when its condition is not met.
+
+In order to provide [control flow](https://en.wikipedia.org/wiki/Control_flow) to your Flows, you can set up divergent
+chains of operations.
+
+![Control Flow](image.webp)
+
+- If `operation1` executes successfully, then `operation2` executes.
+- Else if `operation1` fails on execution, then `operation3` executes.
+
+_And there we have it!_ These are the core building block of any flow. However, during configuration, and in the event
+of an unexpected error, you'll need some way to view Flow Object data and debug your flow. So Flows also includes a
+[Logger](#logs), which we'll also introduce below.
 
 ## Create a Flow
 
@@ -85,90 +97,128 @@ To create a Flow, follow these steps:
     <span mi icon dngr>delete</span>.
 12. **Optional:** To unlink an operation, click <span mi icon prmry>adjust</span> and drag.
 
+<!--
+Create a Flow
+View a Flow
+Edit a Flow
+Toggle a Flow to (In)active
+Delete a Flow
+
+Configure a Trigger
+
+Create an Operation
+Configure an Operation
+(Un)link an Operation
+The Context Menu
+Delete an Operation
+-->
+
 ## The Flow Object
 
-When a Flow is triggered, Directus creates a JSON object to store all data generated within the Flow's Trigger and
-operation(s).
+<!--
+Video exploration of the Flow Object
+What's the difference? "{{}}" vs {{}}
 
-If the trigger involved any data, such as in an Event Hook, Webhook, or the "Another Flow" triggers, the data will be
-appended onto `payload` under the `$trigger` key.
 
-As each operation executes successfully, an `operation_key` is appended to the Flow Object. If any data was generated
-during the operation, it is stored under its relevant `operation_key`. Every operation has access to the Flow Object,
-and therefore data stored from preceding operations.
+-->
 
-The following JSON object is a simple example of a Flow with two Operations. The `$trigger`, `$last`, and
-`$accountability` keys are included on every Flow. An Operation key will be generated for each Operation that executes
-successfully.
+When a Flow is triggered, Directus creates a JSON object to store all data generated within the flow's trigger and
+operation(s). Every operation has access to this Flow Object, and therefore data stored from preceding operations.
+
+As each operation executes successfully, an `operation_key` is appended to the Flow Object. Any data was generated
+during the operation is stored under its relevant `operation_key`. If the operation doesn't generate data, a `null`
+value is appended under its key.
+
+The following is a generic example of a Flow Object.
 
 ```json
 {
-	"$trigger": {
-		... // Data generated by the Flow trigger.
-		"payload": {"some_key": "Some payload value"}
-		... // More trigger data.
-	},
-	"$last": null, // Data from the last Operation in the flow, for easy access! Assigned NULL if no data is generated in last operation.
+	"$trigger": {}, // Data generated by the Flow trigger.
+	"$last": null, // Constantly updates to store data of the last operation that executed in the flow.
 	"$accountability": {}, // Provides details on who/what started the flow.
-	"operation_key_1": "some_value", // The data (if any) generated by the operation.
-	"operation_key_2": {
-		"nested_key": "Some nested value." // It will be common to have deeply nested JSON.
+	"operationKey1": "some_value", // The data (if any) generated by the operation.
+	"operationKey2": {
+		"nestedKey": "Nested value" // It will be common to have nested JSON.
 	},
-	"operation_key_3": "{{ operation_key_2.nested_key }}" // You can use dot notation on triggers and operations to fetch values within the Flow Object.
+	"operationKey3": null, // A null value is appended if no data generated.
 	...
 }
 ```
 
-You may notice the dot-notation with double-moustache syntax on `operation_key_3`. Directus lets you use keys from the
-Flow Object to use data on subsequent operations.
+### JSON
+
+As you [create a flow](#create-a-flow), remember that the Flow Object is a JSON object. So all keys and values must
+follow [JSON syntax](https://www.w3schools.com/js/js_json_syntax.asp). In general, this means each `key` must be a
+string, which can contain _but cannot begin with_ a number. Each `value` can be of the following type:
 
 ```json
 {
-	"operation_key_4": {
-		"user": "{{ $accountability.user }}",
-		"attribute": "operation_key_3"
+	"key": "string", // string
+	"key2": 1, // number
+	"key3": {}, //json
+	"key4": [], // array
+	"key5": true, // boolean
+	"key6": null // null
+}
+```
+
+### Flow Object Variables
+
+Each Flow Object comes with the following keys:
+
+- `$all` — This stores the entire Flow Object.
+- `$trigger` — This stores data generated from the trigger.
+- `$last` — When configuring operation, use `$last` in the current operation to conveniently access data from the
+  preceding operation, without needing to lookup its specific `operationKey`
+- `$accountability` — Provides details on who/what started the flow.
+- `<operationKey>` — All the operation keys.
+
+### Dot Notation
+
+You can use double-moustache syntax to access an existing value on the Flow Object.
+
+```json
+{
+	"operationKey4": {
+		"user": "{{ $accountability.user }}"
 	}
 }
 ```
 
-<!--
-$trigger
-$last
-$accountability
--->
+These variables are not a feature of JSON. This is powered by Directus, _under the hood_.
 
-In the end, the Flow Object is a JSON object, and so all keys and values must follow
-[JSON syntax](https://www.w3schools.com/js/js_json_syntax.asp). In general, this means the `key` must be a string, which
-can contain _but cannot begin with_ a number. It can also have the following types of values.
+### Indexing
+
+You can use dot-notation and array indexing.
 
 ```json
 {
-	"key": "string",
-	"key2": 1,
-	"key3": {},
-	"key4": [],
-	"key5": true,
-	"key6": null
+	"key1": {{ $trigger.payload }}, // inserts value nested under $trigger.payload
+	"key2": {{ }},
 }
 ```
 
-You cannot pass any type computational logic onto the using double-moustache syntax:
+You cannot pass any type of computation using double-moustache syntax:
 
 ```json
 {
-	"key": {{ 2 + 2}}
+	"key": {{ 2 + 2 }}, // doesn't work
+	"key2": {{ $trigger.payload.toLowerCase() }} // doesn't work
 }
 ```
 
 :::tip
 
-If you wish to perform computations within a flow, you can use the
-[script operation](/configuration/flows/operations.md#script) or a
+To perform computations, use the [script operation](/configuration/flows/operations.md#script) or a
 [webhook](/configuration/flows/operations.md#webhook).
 
 :::
 
 ## Logs
+
+<!--
+Options
+ -->
 
 <video autoplay playsinline muted loop controls title="">
 	<source src="https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/logs-20220603A.mp4" type="video/mp4" />

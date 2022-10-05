@@ -236,9 +236,15 @@ from a previous step in Flows, or dynamically read stored data into the subject 
 
 If the operation executes successfully, a `null` value will be appended onto its operation key.
 
-- **To** — Set the email addresses. Hit `↵` to save the email. Click an email to remove it.
+- **To** — Sets the email addresses. Hit `↵` to save the email. Click an email to remove it.
 - **Subject** — Set the subject line.
 - **Body** — Use a Markdown or WYSIWYG editor to create the email body.
+
+:::tip Batch Emails
+
+You can input an array of emails in the `To` input option to send off multiple emails.
+
+:::
 
 :::tip
 
@@ -254,7 +260,8 @@ provider may send it there automatically.
 This operation sends a notification to an app user. Flow Object keys can be used as variables, which means you can use
 an array of user IDs from a previous step in Flows, or dynamically read stored data into the notifications.
 
-If the operation executes successfully, a `null` value is appended onto its operation key.
+If the operation executes successfully, a list containing the IDs of all sent notifications generated is appended under
+this operation's key.
 
 - **Users** — Define a User by their primary key UUID. Use [Flow keys](/configuration/flows#the-flow-object) to set this
   dynamically.
@@ -262,24 +269,30 @@ If the operation executes successfully, a `null` value is appended onto its oper
 - **Title** — Set the notification title.
 - **Message** — Set the main body of the notification.
 
+:::tip Batch Notifications
+
+You can input an array of UUIDs in the `To` input option to send off multiple emails.
+
+:::
+
 ## Webhook / Request URL
 
 ![Webhook / Request URL](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/webhook-20220603A.webp)
 
-This operation makes a request to another URL.
+This operation makes a request to another URL. You can make any HTTP request needed. WHen the operation completes
+successfully, the response is appended under the operation's key.
 
 - **Method** — Choose to make a GET, POST, PATCH, DELETE, or other type of request.
 - **URL** — Define the URL to send the request to.
 - **Headers** — Create a new `header:value` to pass along with the request.
-- **Request Body** — Set the request body data, using any string or JSON.
+- **Request Body** — Set the request body data.
 
 ## Sleep
 
 ![Sleep](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/sleep-20220603A.webp)
 
 This operation creates a delay in the Flow for a given amount of milliseconds, then continues to the next operation.
-
-If the operation executes successfully, a `null` value is appended onto its operation key.
+Once finished, a `null` value is appended under its operation key.
 
 - **Milliseconds** — Define the number of milliseconds the Operation will pause.
 
@@ -287,19 +300,35 @@ If the operation executes successfully, a `null` value is appended onto its oper
 
 ![Transform Payload](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/transform-payload-20220603A.webp)
 
-Transform Payload simply creates a new key on the Flow Object with nested JSON data to provide a clean space where you
-can combine data from multiple [Flow keys](/configuration/flows#the-flow-object) into a single object. For example, if
-you need to use the same data multiple times _(e.g. send it in a web request and also use it to create an Item in a
-Collection)_, you can combine the data with Transform Payload once, then access its Operation key repeatedly.
+This operation lets you custom define your own JSON payload and append it to the Flow Object for use in subsequent
+operations. You can hard-code the values or use data from previously generated keys on the
+[Flow Object](/configuration/flows#the-flow-object). This enables you to take multiple sources of data and "tidy them
+up" into a single object.
 
 - **JSON** — Define JSON to insert into the Flow Object.
+
+For example, let's say your final payload needs some data from a `users_collection`, `widgets_collection` and some 3rd
+party resource which processes the data. You can add a Read Items operation for `collection_a`, another Read Items
+operation for `collection_b`, and a Webhook operation for the third party resource, then create a Transform JSON
+operation like so:
+
+```
+{
+	"note": "You can add a hard-coded value!",
+	"name": {{users_collection.username}},
+	"widget_id": {{widgets_collection.id}},
+	"results": {{webhookKey.subnestedValue}}
+}
+```
+
+Your defined JSON payload is appended under the operation's key on the Flow Object for use in subsequent operations.
 
 ## Trigger Flow
 
 ![Trigger Flow](https://cdn.directus.io/docs/v9/configuration/flows/operations/operations-20220603A/trigger-flow-20220603A.webp)
 
-This Operation starts another Flow and passes data to it. It should be used in combination with the
+This Operation starts another Flow and _(optionally)_ passes data into it. It should be used in combination with the
 [Another Flow](/configuration/flows/triggers#another-flow) Trigger.
 
-- **Flow** — Define a Flow by its primary key UUID.
-- **Payload** — Define JSON to insert into the Flow Object.
+- **Flow** — Define a flow by its primary key UUID.
+- **Payload** — Define JSON to pass in the request to the triggered flow.
