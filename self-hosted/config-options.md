@@ -185,6 +185,7 @@ prefixing the value with `{type}:`. The following types are available:
 | `number`      | `number:3306`                                                                                                   | `3306`                                                                                                                       |
 | `regex`       | `regex:\.example\.com$`                                                                                         | `/\.example\.com$/`                                                                                                          |
 | `array`       | `array:https://example.com,https://example2.com` <br> `array:string:https://example.com,regex:\.example3\.com$` | `["https://example.com", "https://example2.com"]` <br> `["https://example.com", "https://example2.com", /\.example3\.com$/]` |
+| `json`        | `json:{"items": ["example1", "example2"]}`                                                                      | `{"items": ["example1", "example2"]}`                                                                                        |
 
 ---
 
@@ -309,7 +310,7 @@ your project and API on different domains, make sure to verify your configuratio
 | `HASH_LENGTH`          | The length of the hash function output in bytes.                                                                                 | `32`                |
 | `HASH_TIME_COST`       | The amount of passes (iterations) used by the hash function. It increases hash strength at the cost of time required to compute. | `3`                 |
 | `HASH_PARALLELISM`     | The amount of threads to compute the hash on. Each thread has a memory pool with `HASH_MEMORY_COST` size.                        | `1` (single thread) |
-| `HASH_TYPE`            | The variant of the hash function (`0`: argon2d, `1`: argon2i, or `2`: argon2id).                                                 | `1` (argon2i)       |
+| `HASH_TYPE`            | The variant of the hash function (`0`: argon2d, `1`: argon2i, or `2`: argon2id).                                                 | `2` (argon2id)      |
 | `HASH_ASSOCIATED_DATA` | An extra and optional non-secret value. The value will be included Base64 encoded in the parameters portion of the digest.       | --                  |
 
 Argon2's hashing function is used by Directus for three purposes: 1) hashing user passwords, 2) generating hashes for
@@ -841,9 +842,9 @@ Based on the `EMAIL_TRANSPORT` used, you must also provide the following configu
 
 ### SendGrid (`sendgrid`)
 
-| Variable                 | Description            | Default Value     |
-| ------------------------ | ---------------------- | ----------------- |
-| `EMAIL_SENDGRID_API_KEY` | Your SendGrid API key. | --                |
+| Variable                 | Description            | Default Value |
+| ------------------------ | ---------------------- | ------------- |
+| `EMAIL_SENDGRID_API_KEY` | Your SendGrid API key. | --            |
 
 ### AWS SES (`ses`)
 
