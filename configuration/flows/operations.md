@@ -34,6 +34,13 @@ regardless of if the condition was met or not. If the condition is misconfigured
 object you can use to help debug the misconfiguration. This object has two keys of importance `_original`, which will
 have the Flow Object, and `details`, which will provide information to help identify the misconfiguration.
 
+:::warning
+
+When using a [Event Hook](/configuration/flows/triggers.md#event-hook) configured to be **Action (Blocking)**, if your
+flow ends with a condition that executes with a `reject` path, it will cancel your database transaction.
+
+:::
+
 ## Run Script
 
 <video autoplay playsinline muted loop controls title="Run Script">
@@ -79,6 +86,14 @@ The returned value will be appended under the `myScript` operation key.
 }
 
 ```
+
+:::tip Throwing Errors
+
+If you throw an error in a Run Script operation, it will immediately break your flow chain and stop execution of
+subsequent flows. If you used a ["Blocking" Event hook](/configuration/flows/triggers.md#event-hook), throwing an error
+will cancel the event transaction.
+
+:::
 
 :::tip
 
