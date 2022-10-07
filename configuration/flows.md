@@ -26,18 +26,23 @@ There is also dedicated API documentation on [Flows](/reference/system/flows) an
 <!--
 What is Task Automation?
 
-Oversimplification of the internet: Get Data, Process Data, Send Data
+Oversimplification of the internet:
+- Get Data
+- Process Data
+- Send Data
 Database data stored as rows and columns
 Web Request -> JSON
 JSON -> Operations and Transformations
-Scripts
-Control Flow
+Scripts ->
+Control Flow ->
+Events ->
+Async/Sync ->
 
 ### JSON
 
 As you [create a flow](#create-a-flow), remember that the Flow Object is a JSON object. So all keys and values must
 follow [JSON syntax](https://www.w3schools.com/js/js_json_syntax.asp). In general, this means each `key` must be a
-string, which can contain _but cannot begin with_ a number. Each `value` can be of the following type:
+string, which can contain but cannot begin with a number. Each `value` can be of the following type:
 
 ```json
 {
@@ -53,7 +58,9 @@ string, which can contain _but cannot begin with_ a number. Each `value` can be 
 
 ## What's a Flow?
 
-![What's a Flow?](https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/whats-a-flow-20220603A.webp)
+<video title="What's a Flow" autoplay playsinline muted loop controls>
+<source src="https://cdn.directus.io/docs/v9/" type="video/mp4" />
+</video>
 
 Each flow is made up of three elements: A trigger, its operations, and a Flow Object.
 
@@ -64,25 +71,20 @@ An [operation](/configuration/flows/operations) is an action or process performe
 create, read, update, or delete data; send off emails, push _in-app_ notifications, and log to console; create control
 flows with conditional logic, send webhooks, implement your own custom scripts using JavaScript, _and beyond_.
 
-However, to put all that in more general terms, operations do three things:
+But, to put these explicit actions in more general terms, operations do three things:
 
 - **Get data** from Directus or an outside service.
-- **Process data** transform it, validate it, or whatever.
+- **Process data** a.k.a. transform it, validate it, or whatever.
 - **Send data** to Directus or an outside service.
 
-<!--
-Actually, whole purpose of flows is encapsulated by those three things: *Some action or event triggers your flow. The event data *if any* is passed in to the flow. Your operations let you get additional data, process data, then send that data off.* This is a totally open-ended system. Your flow's data could take any shape you want and go anywhere you want.
--->
-
-In order to track and access its data, each flow creates its own [Flow Object](#the-flow-object). This is a JSON object
-that stores data generated from the Trigger as well as each operation that executes in the flow. Every Operation has
-access to the Flow Object. This means you can use data from a previous operation in the current operation, creating
-compound, complex, conditional flows for task automation and data processing.
+In order to track and access its data, each flow creates its own [Flow Object](#the-flow-object). Every operation has
+access to this Flow Object. This means you can use data from a previous operation in the current operation, enabling you
+to configure compound, complex, conditional flows for task automation and data processing.
 
 Not every operation that executes in a flow does so successfully. In some cases, your operations are going to fail.
 Perhaps an operation tried to access data that doesn't exist, or a webhook operation fails for some reason, or perhaps
-you set a [Condition Operation](/configuration/flows/operations.md#condition) which _(fails by design)_ when its
-condition is not met.
+you set a [Condition Operation](/configuration/flows/operations.md#condition) which _fails by design_ when its condition
+is not met.
 
 This does not immediately stop your flow and throw an error. It provides
 [control flow](https://en.wikipedia.org/wiki/Control_flow). You can set up divergent chains of operations within a flow:
@@ -95,58 +97,69 @@ This does not immediately stop your flow and throw an error. It provides
 _And there we have it!_ These are the conceptual cornerstones of any flow. Next, you'll need to know how to actually
 create a flow, which we discuss in the next section.
 
-## Create a Flow
+## Configure a Flow
 
 <video autoplay playsinline muted loop controls title="Create a Flow">
 	<source src="https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/create-a-flow-20220603A.mp4" type="video/mp4" />
 </video>
 
-To create a Flow, follow these steps:
+### Create A Flow
 
 1. Navigate to **Settings > Flows** and click <span mi btn>add</span> in the page header. A drawer will open.
 2. Under **Flow Setup**, fill in a **Name** for the Flow and the following _optional_ details:
    - **Status** — Sets the Flow to active or inactive.
-   - **Icon** — Adds a Material Icon used to help quickly identify the Flow.
+   - **Icon** — Adds an icon to help quickly identify the Flow.
    - **Description** — Sets a brief verbal description of the Flow.
    - **Color** — Sets a color to help identify the Flow.
    - **Activity and Logs Tracking** - Track Activity and [Logs](#logs), Activity, or neither.
+
+### Configure a Trigger
+
 3. Click <span mi btn>arrow_forward</span> to navigate to **Trigger Setup**. Select a
    [Trigger](/configuration/flows/triggers) type and configure as desired.
-4. Click <span mi btn>done</span> in the Menu Header to be taken to the Flow Grid Area.\
-   You will now see the Trigger Panel on the Flow Grid Area.
-5. On the Trigger Panel, click <span mi>add</span> and the **Create Operation** side menu will open.
+4. Click <span mi btn>done</span> in the menu header to confirm.
+
+### Configure an Operation
+
+5. On the trigger panel, click <span mi>add</span> and the **Create Operation** side drawer will open.
 6. Choose a **Name**, an [Operation](/configuration/flows/operations) type, and configure as desired.\
-   Directus will convert the unique name into an Operation Key, used on the [Flow Object](#the-flow-object).\
-   If you don't choose a name, the system will auto-generate a name and key.
-7. Next, click <span mi btn>done</span> in the Page Header to confirm and return to the Flow Grid Area.
-8. On the newly created Operation Panel:
+   Directus will convert the unique name into an operation key, used on the [Flow Object](#the-flow-object).\
+   If you don't choose a name, the system will auto-generate a name and key for you.
+7. Next, click <span mi btn>done</span> in the Page Header to confirm and return to the flow grid area.
+8. From here, you can make the following optional configurations:
+   - **Reposition** — You can drag and drop panels to reposition as desired.
+   - **Unlink/Relink** — Click and drag <span mi icon prmry>adjust</span> or <span mi icon prmry>arrow_forward</span> to
+     unlink/relink flows.
+   - **Duplicate an Operation** —
+   - **Copy an Operation** — To copy and paste an operation into another flow, click <span mi icon>more_vert</span> to
+     open its context menu. Click <span mi icon>input</span> and a popup menu will open. Choose the desired flow from
+     the dropdown and click **Copy**.
+   - **Delete an Operation** — To delete an Operation, click <span mi icon>more_vert</span> then
+     <span mi icon dngr>delete</span>. A popup menu will appear. Click <span mi icon dngr>delete</span> to confirm.
+9. On the newly created Operation Panel:
    - Click <span mi icon>add</span> to add an Operation to execute if the current Operation is successful.
    - Click <span mi icon>remove</span> to add an Operation to execute if the current Operation fails.
-9. Repeat steps 8-10 to build out your Flow as desired.
-10. **Optional:** To reconfigure a Trigger or Operation Panel, click <span mi icon>edit</span> and make any necessary
-    edits.
-11. **Optional:** To delete an Operation Panel, click <span mi icon>more_vert</span> then
-    <span mi icon dngr>delete</span>.
-12. **Optional:** To unlink an operation, click <span mi icon prmry>adjust</span> and drag.
+10. Repeat steps 5-10 to build out your Flow as desired.
+11. Click <span mi btn>done</span> to confirm and create your Flow.
+12. Click <span mi btn>arrow_back</span> to return to the flows list.
+13. Once created, you may need to reconfigure your flow, toggle it to inactive, or delete it.
 
-<!--
-Create a Flow
-View a Flow
-Edit a Flow
-Toggle a Flow to (In)active
-Delete a Flow
+### Reconfigure a Flow
 
-Configure a Trigger
+1. Click <span mi btn muted>edit</span> in the flow page header and make reconfigurations as desired.
+2. Click <span mi btn>done</span> to confirm.
 
-Create an Operation
-Configure an Operation
-(Un)link an Operation
-The Context Menu
-Delete an Operation
--->
+### Toggle a Flow to Inactive
 
-Now that we know how to create a flow, as well as how to configure its trigger and operations, it's time to get a firmer
-understanding of the Flow Object.
+1. Navigate to **Settings Flows** and click <span mi icon>more_vert</span> on the desired flow.
+2. Click **<span mi icon>check</span> Set Flow to Active** or **<span mi icon>block</span> Set Flow to Inactive**.
+
+### Delete a Flow
+
+1. Click <span mi icon>more_vert</span> on the desired flow to open its context menu.
+2. Click <span mi icon dngr>delete</span> and a popup menu will appear. Click
+
+Now that we know how to create and configure a flow, it's time to get a firmer understanding of the Flow Object.
 
 ## The Flow Object
 
