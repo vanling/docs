@@ -175,8 +175,9 @@ query {
 
 ::: tip Filtering M2A fields
 
-Because attribute names in GraphQL cannot contain the `:` character, you will need to replace it with a double underscore.
-For example, instead of using `sections.item:heading` in your filter, you will need to use `sections.item__heading` (see the full example below).
+Because attribute names in GraphQL cannot contain the `:` character, you will need to replace it with a double
+underscore. For example, instead of using `sections.item:heading` in your filter, you will need to use
+`sections.item__heading` (see the full example below).
 
 ```graphql
 query {
@@ -228,7 +229,8 @@ query {
 ## Sort
 
 What field(s) to sort by. Sorting defaults to ascending, but a minus sign (`-`) can be used to reverse this to
-descending order. Fields are prioritized by the order in the parameter.
+descending order. Fields are prioritized by the order in the parameter. The dot-notation has to be used when sorting
+with values of nested fields.
 
 ### Examples
 
@@ -238,22 +240,26 @@ Sort by creation date descending\
 Sort by a "sort" field, followed by publish date descending\
 `sort, -publish_date`
 
+Sort by a "sort" field, followed by a nested author's name\
+`sort, -author.name`
+
 ### REST API
 
 ```
-?sort=sort,-date_created
+?sort=sort,-date_created,author.name
 
 // or
 
 ?sort[]=sort
 &sort[]=-date_created
+&sort[]=-author.name
 ```
 
 ### GraphQL
 
 ```graphql
 query {
-	articles(sort: ["sort", "-date_created"]) {
+	articles(sort: ["sort", "-date_created", "author.name"]) {
 		id
 	}
 }
