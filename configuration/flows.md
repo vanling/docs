@@ -27,6 +27,7 @@ There is also dedicated API documentation on [Flows](/reference/system/flows) an
 What is Task Automation?
 
 Oversimplification of the internet:
+- Store data
 - Get Data
 - Process Data
 - Send Data
@@ -146,8 +147,9 @@ create a flow, which we discuss in the next section.
 
 ### Reconfigure a Flow
 
-1. Click <span mi btn muted>edit</span> in the flow page header and make reconfigurations as desired.
-2. Click <span mi btn>done</span> to confirm.
+1. Navigate tot the desired flow.
+2. Click <span mi btn muted>edit</span> in the flow page header and make reconfigurations as desired.
+3. Click <span mi btn>done</span> to confirm.
 
 ### Toggle a Flow to Inactive
 
@@ -157,7 +159,7 @@ create a flow, which we discuss in the next section.
 ### Delete a Flow
 
 1. Click <span mi icon>more_vert</span> on the desired flow to open its context menu.
-2. Click <span mi icon dngr>delete</span> and a popup menu will appear. Click
+2. Click <span mi icon dngr>delete</span> and a popup menu will appear. Click **Delete** to confirm.
 
 Now that we know how to create and configure a flow, it's time to get a firmer understanding of the Flow Object.
 
@@ -200,9 +202,9 @@ The following is a generic example of a Flow Object.
 ```
 
 As you can see, the example above doesn't have any substantial data inside each key. In reality, there's going to be a
-lot of data. However, the data nested in these first-level keys will always be slightly different, based on your flow's
-unique configuration. During configuration and debugging, you'll need to use a tool like the [Logger](#logs) to view the
-data you are working with.
+lot of data. However, the data nested in these keys will always be slightly different, based on your flow's unique
+configuration. During configuration and debugging, you'll need to use a tool like [The Logger](#logs) to view your
+flow's unique data.
 
 :::tip
 
@@ -216,20 +218,14 @@ to low-code users. In practice, operation keys will actually have a unique and d
 
 <!--
 "{{}}" versus {{}}
-
-[
- {{ blah }}
-]
 -->
 
 <video title="Use Flow Object Keys as Variables" autoplay playsinline muted loop controls>
 <source src="https://cdn.directus.io/docs/v9/" type="video/mp4" />
 </video>
 
-While configuring an operation, you can use its keys as variables to access data.
-
-While configuring an operation, you can use `$trigger`, `$accountability`, `$last`, or any preceding `<operationKey>` as
-a variable. Simply wrap the keyname in double-moustache syntax to use it.
+While configuring a flow, you can use these keys as variables to access data. Simply wrap the key name in
+double-moustache syntax to use it.
 
 ```
 {{ $accountability }}
@@ -267,17 +263,25 @@ To perform computations on flow data, use the [script operation](/configuration/
 	<source src="https://cdn.directus.io/docs/v9/configuration/flows/flows/flows-20220603A/logs-20220603A.mp4" type="video/mp4" />
 </video>
 
-Accessible from the Sidebar, Logs store information for each Flow execution. Each log will display information from
-Triggers as well as each Operation in the Flow. To access a Flow's logs, follow these steps.
+Accessible from the sidebar, logs store information for each flow execution. Each log will display information from
+triggers as well as each operation in the flow. To access a flow's logs, follow these steps.
 
-1. Navigate to **Settings > Flows** and click the desired Flow.
-2. Click **<span mi icon prmry>fact_check</span> Logs** in the Sidebar. A side drawer will open, displaying the Flow's
+1. Navigate to **Settings > Flows** and click the desired flow.
+2. Click **<span mi icon prmry>fact_check</span> Logs** in the sidebar. A side drawer will open, displaying the flow's
    logs.
 3. Click a log and another side drawer will open, allowing you to peer through its data.
 4. When finished, click <span mi btn muted>close</span> to close the drawer.
 
 <!--
-Options
+Not a 1:1 mapping to the Flow Object.
+Trigger
+- Options
+- Payload
+- Accountability
+
+Operation Keys
+
+:::tip How do I know what $last looks like?
 -->
 
 :::tip
