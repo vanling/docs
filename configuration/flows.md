@@ -272,17 +272,54 @@ triggers as well as each operation in the flow. To access a flow's logs, follow 
 3. Click a log and another side drawer will open, allowing you to peer through its data.
 4. When finished, click <span mi btn muted>close</span> to close the drawer.
 
-<!--
-Not a 1:1 mapping to the Flow Object.
-Trigger
-- Options
-- Payload
-- Accountability
+The Logger is not a 1:1 mapping to the Flow Object.
 
-Operation Keys
+**Trigger**
 
-:::tip How do I know what $last looks like?
--->
+- **Options** — Displays the trigger's configuration details as JSON.\
+  _(This data is not stored on the Flow Object)_.
+- **Payload** — Displays the data appended under `$trigger`.
+- **Accountability** — Displays data appended under `$accountability`.
+
+**`<OperationKey>`**
+
+- **Options** — Displays the operation's configuration details as JSON.\
+  _(This data is not stored on the Flow Object)_.
+- **Payload** — Displays the data appended under this `<operationKey>`.
+
+**`<OperationKey>` Log to Console**
+
+- **Options** — Displays the message you used to
+
+[Log to Console](/configuration//flows/operations.md#log-to-console) is an operation that lets you log any value or
+message in The Logger, for debugging purposes. It accepts variables from the Flow Object. Your logged message is not
+appended onto the Flow Object, so when using The Logger, so you can find your log under **Options**.
+
+Note that this also means your original message will always be wrapped in JSON. So if you wanted to log a value, for
+example `"The last operation was a success"`, it will be displayed as:
+
+```
+{
+	"message": "The last operation was a success"
+}
+```
+
+The `message` key is not part of the original message.
+
+:::tip
+
+Remember, some operations _(such as Log to Console)_ do not generate data. These operations will not have a **Payload**
+in the Logger.
+
+:::
+
+:::tip Where is `$last`?
+
+You may notice `$last` is not in The Logger. Remember, its value constantly changes, updating after every operation. To
+find out the value of `$last` at any point in the flow, use
+[Log to Console](/configuration/flows/operations.md#log-to-console).
+
+:::
 
 :::tip
 
