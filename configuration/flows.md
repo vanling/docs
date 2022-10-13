@@ -39,11 +39,7 @@ Control Flow ->
 Events ->
 Async/Sync ->
 
-### JSON
-
-As you [create a flow](#create-a-flow), remember that the Flow Object is a JSON object. So all keys and values must
-follow [JSON syntax](https://www.w3schools.com/js/js_json_syntax.asp). In general, this means each `key` must be a
-string, which can contain but cannot begin with a number. Each `value` can be of the following type:
+### JSON vs JavaScript Objects
 
 ```json
 {
@@ -214,28 +210,41 @@ to low-code users. In practice, operation keys will actually have a unique and d
 
 :::
 
-### Use Flow Object Keys as Variables
-
-<!--
-"{{}}" versus {{}}
--->
+## Mustache Syntax
 
 <video title="Use Flow Object Keys as Variables" autoplay playsinline muted loop controls>
 <source src="https://cdn.directus.io/docs/v9/" type="video/mp4" />
 </video>
 
-While configuring a flow, you can use these keys as variables to access data. Simply wrap the key name in
-double-moustache syntax to use it.
+While configuring your flow's operations, you can use keys from the Flow Obejct as variables to access data. Simply wrap
+the key name in double-moustache syntax to access its stored value.
 
 ```
 {{ $accountability }}
 ```
 
-You can use dot-notation and array indexing.
+<!--
+:::v-pre
+
+#### `{{ opKey }}` vs `"{{ opKey }}"`
+
+:::
+
+The flows system parses the vars into JSON, then converts this to a JavaScript object to send to the API.
+The problem is, some of your data might not always be valid JSON.
+When you need to access a value that would not be valid JSON, you can first wrap it in "{{}}".
+By doing this, it will signal to Flows that your value is an object.
+
+For example.
+
+- Code snippets go here.
+-->
+
+You can use dot-notation and array indexing to retrieve sub-nested values.
 
 ```
 {
-	"key1": {{ $trigger.payload }},
+	"key1": "{{ $trigger.payload }}",
 	"key2": {{ $trigger.payload.friend_list[0]}}
 }
 ```
