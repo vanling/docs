@@ -312,6 +312,9 @@ await directus.auth.password.request(
 );
 ```
 
+**Note**: You need to configure the
+[`PASSWORD_RESET_URL_ALLOW_LIST` environment variable](/self-hosted/config-options#security) to enable this feature.
+
 ### Reset a Password
 
 ```js
